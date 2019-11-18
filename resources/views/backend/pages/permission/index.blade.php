@@ -45,22 +45,26 @@
                                     </div>
                                 </div>
                                 <div class="space15"></div>
-                                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                <table class="table table-striped table-hover table-bordered text-center" id="editable-sample">
                                     <thead>
                                     <tr>
-                                        <th>Si</th>
-                                        <th>Name</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th class="text-center">Si</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="">
-                                        <td>1</td>
-                                        <td>Smith</td>
-                                        <td><a class="edit" href="javascript:;">Edit</a></td>
-                                        <td><a class="delete" href="javascript:;">Delete</a></td>
-                                    </tr>
+                                    @foreach($permissions as $key => $permission)
+                                        <tr class="">
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $permission->name }}</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">Edit</a>
+                                                <a href="" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
 
 
                                     </tbody>
