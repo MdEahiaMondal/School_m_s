@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+
 
 class PermissionController extends Controller
 {
@@ -13,25 +15,23 @@ class PermissionController extends Controller
         return view('backend.pages.permission.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return  view('backend.pages.permission.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function store(Request $request)
     {
-        //
+       $this->validate($request, [
+           'name' => 'required|unique:permissions',
+       ]);
+
+        Permission::create(['name' => $request->name]);
+        return redirect()->back()->with('success', 'New ! Permission create Successfully !');
+
     }
 
     /**

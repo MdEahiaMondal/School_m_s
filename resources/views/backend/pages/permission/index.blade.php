@@ -30,9 +30,9 @@
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
                                     <div class="btn-group">
-                                        <button id="editable-sample_new" class="btn btn-primary">
+                                        <a class="btn btn-primary" href="{{ route('permission.create') }}">
                                             Add New <i class="fa fa-plus"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
@@ -48,20 +48,16 @@
                                 <table class="table table-striped table-hover table-bordered" id="editable-sample">
                                     <thead>
                                     <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Points</th>
-                                        <th>Status</th>
+                                        <th>Si</th>
+                                        <th>Name</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr class="">
-                                        <td>Jonathan</td>
+                                        <td>1</td>
                                         <td>Smith</td>
-                                        <td>3455</td>
-                                        <td class="center">Lorem ipsume</td>
                                         <td><a class="edit" href="javascript:;">Edit</a></td>
                                         <td><a class="delete" href="javascript:;">Delete</a></td>
                                     </tr>
