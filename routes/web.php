@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //******************************** Backend ***************************************
 
-Route::resource('/admins', 'Backend\AdminController');
+Route::resource('/admin', 'Backend\AdminController');
+Route::resource('/permission', 'Backend\PermissionController');
