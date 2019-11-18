@@ -54,29 +54,26 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+        return view('backend.pages.permission.edit', compact('permission'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'  => 'required|unique:permissions,name,'.$id.',id',
+        ]);
+
+        Permission::findOrFail($id)->update($request->all());
+        return redirect()->route('permission.index')->with('success', 'Permission Update Successfully !');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+       Permission::findOrFail($id)->delete();
+        return redirect()->route('permission.index')->with('success', 'Permission Deleted Successfully !');
     }
 }

@@ -55,6 +55,8 @@
 <script src="{{ asset('backend/') }}/js/scripts.js"></script>
 <!--script for this page-->
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 
 @stack('script')
 

@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'create')
+@section('title', 'Edit')
 
 @push('css')
 
@@ -16,7 +16,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Permission Create
+                            Permission Edit
                             <span class="tools pull-right">
                                 <a class="fa fa-chevron-down" href="javascript:;"></a>
                                 <a class="fa fa-cog" href="javascript:;"></a>
@@ -29,15 +29,16 @@
                                 <p class="alert alert-success">{{ session('success') }}</p>
                             @endif
 
-                            <form class="form-horizontal bucket-form" method="post" action="{{ route('permission.store') }}">
+                            <form class="form-horizontal bucket-form" method="post" action="{{ route('permission.update', ['permission' => $permission->id]) }}">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label col-lg-3" >Name <sup class="text-danger">*</sup> </label>
                                     <div class="col-lg-6">
                                         <div class="input-group m-bot15">
-                                            <input type="text" name="name" placeholder="Permission name" required autofocus class="form-control">
+                                            <input type="text" name="name" value="{{ $permission->name }}" placeholder="Permission name" required autofocus class="form-control">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="submit">CREATE!</button>
+                                                <button class="btn btn-primary" type="submit">UPDATE!</button>
                                               </span>
                                         </div>
                                     </div>
