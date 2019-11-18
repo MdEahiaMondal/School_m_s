@@ -35,23 +35,6 @@ class PermissionController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $permission = Permission::findOrFail($id);
@@ -76,4 +59,6 @@ class PermissionController extends Controller
        Permission::findOrFail($id)->delete();
         return redirect()->route('permission.index')->with('success', 'Permission Deleted Successfully !');
     }
+
+
 }

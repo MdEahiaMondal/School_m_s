@@ -16,7 +16,7 @@
                     </a>
                     <ul class="sub">
                         <li><a href="{{ route('permission.index') }}">Manage Permission</a></li>
-                        <li><a href="boxed_page.html">Manage Role</a></li>
+                        <li><a href="{{ route('role.index') }}">Manage Role</a></li>
                     </ul>
                 </li>
             </ul>
