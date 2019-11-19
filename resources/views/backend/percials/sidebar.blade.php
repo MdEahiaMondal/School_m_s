@@ -5,7 +5,7 @@
             <ul class="sidebar-menu" id="nav-accordion">
 
                 <li>
-                    <a class="active" href="{{ route('admin.index') }}">
+                    <a class="{{ Request::is('admin') ? 'active' : '' }}" href="{{ route('admin.index') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -17,20 +17,20 @@
                         <span>Administration</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('permission.index') }}">Manage Permission</a></li>
+                        <li class="{{ Request::is('permission*') ? 'active' : '' }}"><a  href="{{ route('permission.index') }}">Manage Permission</a></li>
                         <li><a href="{{ route('role.index') }}">Manage Role</a></li>
                     </ul>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="{{ route('teacher.index') }}">
+                    <a href="{{ route('teacher.index') }}" class="{{ Request::is('teacher*') ? 'active' : '' }}">
                         <i class="fa fa-laptop"></i>
                         <span>Teachers</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="{{ route('parent.index') }}">
+                    <a href="{{ route('parent.index') }}" class="{{ Request::is('parent*') ? 'active' : '' }}">
                         <i class="fa fa-laptop"></i>
                         <span>Parents</span>
                     </a>
