@@ -3,12 +3,14 @@
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
+
                 <li>
                     <a class="active" href="{{ route('admin.index') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
@@ -19,6 +21,14 @@
                         <li><a href="{{ route('role.index') }}">Manage Role</a></li>
                     </ul>
                 </li>
+
+                <li class="sub-menu">
+                    <a href="{{ route('teacher.index') }}">
+                        <i class="fa fa-laptop"></i>
+                        <span>Teacher</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- sidebar menu end-->
