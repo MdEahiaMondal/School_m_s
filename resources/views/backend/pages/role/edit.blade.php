@@ -4,6 +4,7 @@
 
 @push('css')
 
+    <link href="{{ asset('backend/js/iCheck/skins/flat/green.css') }}" rel="stylesheet">
 
 @endpush
 
@@ -16,7 +17,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Permission Edit
+                            Role Update
                             <span class="tools pull-right">
                                 <a class="fa fa-chevron-down" href="javascript:;"></a>
                                 <a class="fa fa-cog" href="javascript:;"></a>
@@ -29,22 +30,51 @@
                                 <p class="alert alert-success">{{ session('success') }}</p>
                             @endif
 
-                            <form class="form-horizontal bucket-form" method="post" action="{{ route('permission.update', ['permission' => $permission->id]) }}">
-                                @csrf
-                                @method('PUT')
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label col-lg-3" >Name <sup class="text-danger">*</sup> </label>
-                                    <div class="col-lg-6">
-                                        <div class="input-group m-bot15">
-                                            <input type="text" name="name" value="{{ $permission->name }}" placeholder="Permission name" required autofocus class="form-control">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="submit">UPDATE!</button>
-                                              </span>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+
+
+                            <div class="form">
+                                <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('role.update', ['role' => $role->id]) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group ">
+                                        <label for="name" class="control-label col-lg-3">Name</label>
+                                        <div class="col-lg-6">
+                                            <input class=" form-control" id="name" value="{{ $role->name }}" name="name" type="text" />
                                         </div>
                                     </div>
-                                </div>
 
-                            </form>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Permission</label>
+                                        <div class="col-sm-8 icheck ">
+                                            <div class="flat-green single-row">
+                                                @foreach($permissions as $permission)
+                                                    <div class="radio ">
+                                                        <input type="checkbox"
+                                                               @foreach($role->permissions as $permi)
+                                                                   {{ $permi->id == $permission->id ? 'checked' : '' }}
+                                                               @endforeach
+                                                               name="permission_id[]" value="{{ $permission->id }}">
+                                                        <label>{{ $permission->name }}</label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-3 col-lg-6">
+                                            <button class="btn btn-primary" type="submit">Update</button>
+                                            <button class="btn btn-default" type="button">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -57,5 +87,9 @@
 
 
 @push('script')
+
+    <script src="{{ asset('backend/js/iCheck/jquery.icheck.js') }}"></script>
+
+    <script src="{{ asset('backend/js/icheck-init.js') }}"></script>
 
 @endpush

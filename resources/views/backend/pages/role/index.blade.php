@@ -70,10 +70,10 @@
 
                                             </td>
                                             <td>
-                                                <a href="{{ route('permission.edit', ['permission' => $role->id]) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('role.edit', ['role' => $role->id]) }}" class="btn btn-primary">Edit</a>
                                                 <button type="button" class="btn btn-danger" onclick="deletePermission({{ $role->id }})">Delete</button>
 
-                                                <form action="{{ route('permission.destroy', ['permission' => $role->id]) }}" id="delete-form-{{ $role->id }}" method="post" style="display: none">
+                                                <form action="{{ route('role.destroy', ['role' => $role->id]) }}" id="delete-form-{{ $role->id }}" method="post" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
