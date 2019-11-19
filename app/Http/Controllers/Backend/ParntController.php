@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\Parent\ParentStoreRequest;
 use App\Parnt;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class ParntController extends Controller
 {
@@ -16,25 +19,33 @@ class ParntController extends Controller
         return view('backend.pages.parents.index', compact('parents'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+       return view('backend.pages.parents.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+
+    public function store(ParentStoreRequest $request)
     {
-        //
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->name,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $true = $user->parent()->create($request->all());
+
+        $user->assignRole('parent');
+
+        if ($true)
+        {
+            return redirect()->route('parent.index')->with('success', 'Parent create Successdully');
+        }
+        return redirect()->route('parent.index')->with('error', 'Parent does not create !');
+
     }
 
     /**
