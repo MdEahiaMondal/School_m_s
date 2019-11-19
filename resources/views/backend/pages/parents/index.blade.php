@@ -79,7 +79,7 @@
                                             </td>
                                             <td>{{ $parent->address }}</td>
                                             <td>
-                                                <a href="{{ route('teacher.edit', ['teacher' => $parent->id]) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('parent.edit', ['parent' => $parent->id]) }}" class="btn btn-primary">Edit</a>
                                                 <button type="button" class="btn btn-danger" onclick="deleteTeacher({{ $parent->id }})">Delete</button>
 
                                                 <form action="{{ route('teacher.destroy', ['teacher' => $parent->id]) }}" id="delete-form-{{ $parent->id }}" method="post" style="display: none">
