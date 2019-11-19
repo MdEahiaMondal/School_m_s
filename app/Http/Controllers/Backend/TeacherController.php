@@ -6,7 +6,9 @@ use App\Teacher;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class TeacherController extends Controller
 {
@@ -73,20 +75,43 @@ class TeacherController extends Controller
 
     public function edit(Teacher $teacher)
     {
-        return view('backend.pages.teacher.edit', compact('teacher'));
+        $roles = Role::latest()->get();
+        return view('backend.pages.teacher.edit', compact('teacher','roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Teacher $teacher)
     {
-        //
+       $request->validate($this->updateRules($teacher));
+
+       $teacher->user()->update([
+               'name' => $request->name,
+               'email' => $request->email,
+           ]);
+
+       DB::table('model_has_roles')->where('model_id', $teacher->user->id)->delete(); // first delete old role
+
+        $teacher->user->assignRole($request->role_name); // now new role assign
+
+        $teacher->update($request->all());
+        return redirect()->route('teacher.index')->with('success', 'Teacher update successfully !');
+
     }
+
+
+    protected function updateRules($teacher)
+    {
+        return [
+            'name' => 'required',
+            'email' => 'required|unique:users,email,'.$teacher->user_id.',id',
+            'phone' => 'required',
+            'subject' => 'required',
+            'education' => 'required',
+            'address' => 'required',
+        ];
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
