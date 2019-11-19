@@ -28,7 +28,7 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate($this->rules(), $this->validationErrorMessages());
+        $request->validate($this->storeRules(), $this->validationErrorMessages());
 
         $user = User::create([
             'name' => $request->name,
@@ -50,7 +50,7 @@ class TeacherController extends Controller
     }
 
 
-    protected function rules()
+    protected function storeRules()
     {
         return [
             'name' => 'required',
@@ -70,26 +70,10 @@ class TeacherController extends Controller
         ];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Teacher $teacher)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('backend.pages.teacher.edit', compact('teacher'));
     }
 
     /**

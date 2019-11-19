@@ -77,7 +77,7 @@
                                             </td>
                                             <td>{{ $teacher->address }}</td>
                                             <td>
-                                                <a href="{{ route('permission.edit', ['permission' => $teacher->id]) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('teacher.edit', ['teacher' => $teacher->id]) }}" class="btn btn-primary">Edit</a>
                                                 <button type="button" class="btn btn-danger" onclick="deletePermission({{ $teacher->id }})">Delete</button>
 
                                                 <form action="{{ route('permission.destroy', ['permission' => $teacher->id]) }}" id="delete-form-{{ $teacher->id }}" method="post" style="display: none">
