@@ -80,9 +80,9 @@
                                             <td>{{ $parent->address }}</td>
                                             <td>
                                                 <a href="{{ route('parent.edit', ['parent' => $parent->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteTeacher({{ $parent->id }})">Delete</button>
+                                                <button type="button" class="btn btn-danger" onclick="deleteParent({{ $parent->id }})">Delete</button>
 
-                                                <form action="{{ route('teacher.destroy', ['teacher' => $parent->id]) }}" id="delete-form-{{ $parent->id }}" method="post" style="display: none">
+                                                <form action="{{ route('parent.destroy', ['parent' => $parent->id]) }}" id="delete-form-{{ $parent->id }}" method="post" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -123,7 +123,7 @@
 
     {{--// for tag delete--}}
     <script>
-        function deleteTeacher(id) {
+        function deleteParent(id) {
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {

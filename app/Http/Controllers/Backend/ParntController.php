@@ -79,14 +79,17 @@ class ParntController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Parnt  $parnt
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Parnt $parnt)
+
+    public function destroy($id)
     {
-        //
+       $parnt = Parnt::findOrFail($id);
+
+        DB::table('model_has_roles')->where('model_id', $parnt->user->id)->delete(); // first delete old role
+
+        $parnt->user()->delete();
+
+        return redirect()->route('parent.index')->with('success', 'Parent Deleted Successdully');
+
+
     }
 }
