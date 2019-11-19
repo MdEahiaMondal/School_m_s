@@ -64,9 +64,9 @@
                                             <td>{{ $class->note }}</td>
                                             <td>
                                                 <a href="{{ route('all_classes.edit', $class->id ) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteRole({{ $class->id }})">Delete</button>
+                                                <button type="button" class="btn btn-danger" onclick="deleteClass({{ $class->id }})">Delete</button>
 
-                                                <form action="{{ route('role.destroy', ['role' => $class->id]) }}" id="delete-form-{{ $class->id }}" method="post" style="display: none">
+                                                <form action="{{ route('all_classes.destroy', ['all_class' => $class->id]) }}" id="delete-form-{{ $class->id }}" method="post" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -104,7 +104,7 @@
 
     {{--// for tag delete--}}
     <script>
-        function deleteRole(id) {
+        function deleteClass(id) {
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {

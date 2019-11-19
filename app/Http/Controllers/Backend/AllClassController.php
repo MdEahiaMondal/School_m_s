@@ -64,15 +64,11 @@ class AllClassController extends Controller
         return redirect()->route('all_classes.index')->with('success', 'Class Updated Successfully !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\AllClass  $allClass
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(AllClass $allClass)
     {
-        //
+       $allClass->delete();
+        return redirect()->route('all_classes.index')->with('success', 'Class Deleted Successfully !');
     }
 
 
