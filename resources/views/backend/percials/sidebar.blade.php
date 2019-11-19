@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="{{ route('class.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
+                    <a href="{{ route('all_classes.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
                         <i class="fa fa-class"></i>
                         <span>Class</span>
                     </a>

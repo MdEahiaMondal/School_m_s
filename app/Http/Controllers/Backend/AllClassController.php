@@ -29,13 +29,12 @@ class AllClassController extends Controller
 
     public function store(Request $request)
     {
-        AllClass::create([
-            'name' => $request->name,
-            'note' => $request->note,
-        ]);
-        return redirect()->route('class.index')->with('success', 'Class Create Successfully !');
-    }
+        $request->validate($this->ClassCreateRules(), $this->setClassErrorMessage());
 
+        AllClass::create($request->all());
+
+        return redirect()->route('all_classes.index')->with('success', 'Class Create Successfully !');
+    }
 
 
 
@@ -50,27 +49,19 @@ class AllClassController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\AllClass  $allClass
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(AllClass $allClass)
     {
-        //
+        return view('backend.pages.class.edit', compact('allClass'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AllClass  $allClass
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, AllClass $allClass)
     {
-        //
+        $request->validate($this->ClassUpdateRules($allClass), $this->setClassErrorMessage());
+
+       $allClass->update($request->all());
+        return redirect()->route('all_classes.index')->with('success', 'Class Updated Successfully !');
     }
 
     /**
@@ -83,4 +74,31 @@ class AllClassController extends Controller
     {
         //
     }
+
+
+
+    protected function ClassCreateRules()
+    {
+        return [
+            'name' => 'required|unique:all_classes,name',
+            'note' => 'string|nullable'
+        ];
+    }
+
+    protected function ClassUpdateRules($allClass)
+    {
+        return [
+            'name' => 'required|unique:all_classes,name,'.$allClass->id,
+            'note' => 'string|nullable'
+        ];
+    }
+
+    protected function setClassErrorMessage()
+    {
+        return [
+            'name.required' => 'Name Field also required'
+        ];
+    }
+
+
 }

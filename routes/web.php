@@ -30,15 +30,15 @@ Route::resource('/role', 'Backend\RoleController');
 
 
 //teacher
-Route::resource('/teacher', 'Backend\TeacherController');
+Route::resource('teacher', 'Backend\TeacherController');
 
 
 //Parents
-Route::resource('/parent', 'Backend\ParntController');
+Route::resource('parent', 'Backend\ParntController');
 
 
 //Students
-Route::resource('/student', 'Backend\StudentController');
+Route::resource('student', 'Backend\StudentController');
 
 //Class
-Route::resource('/class', 'Backend\AllClassController');
+Route::resource('all_classes', 'Backend\AllClassController');

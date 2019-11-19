@@ -28,20 +28,18 @@
 
                           @include('backend.message.message')
 
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-
                                 <div class="form">
-                                    <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('class.store') }}">
+                                    <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('all_classes.store') }}">
                                         @csrf
                                         <div class="form-group ">
                                             <label for="name" class="control-label col-lg-3">Name</label>
                                             <div class="col-lg-6">
                                                 <input class=" form-control" id="name" name="name" type="text" />
+                                                @error('name')
+                                                    <span class="text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -49,13 +47,18 @@
                                             <label for="note" class="control-label col-lg-3">Note</label>
                                             <div class="col-lg-6">
                                                 <input class=" form-control" id="note" name="note" type="text" />
+                                                @error('note')
+                                                <span class="text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="col-lg-offset-3 col-lg-6">
                                                 <button class="btn btn-primary" type="submit">Create</button>
-                                                <a href="{{ route('class.index') }}" class="btn btn-default">Back</a>
+                                                <a href="{{ route('all_classes.index') }}" class="btn btn-default">Back</a>
                                             </div>
                                         </div>
                                     </form>

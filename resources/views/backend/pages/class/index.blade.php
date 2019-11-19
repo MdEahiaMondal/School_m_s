@@ -32,7 +32,7 @@
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('class.create') }}">
+                                        <a class="btn btn-primary" href="{{ route('all_classes.create') }}">
                                             Add New <i class="fa fa-plus"></i>
                                         </a>
                                     </div>
@@ -63,7 +63,7 @@
                                             <td>{{ $class->name }}</td>
                                             <td>{{ $class->note }}</td>
                                             <td>
-                                                <a href="{{ route('class.edit', ['class' => $class->id]) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('all_classes.edit', $class->id ) }}" class="btn btn-primary">Edit</a>
                                                 <button type="button" class="btn btn-danger" onclick="deleteRole({{ $class->id }})">Delete</button>
 
                                                 <form action="{{ route('role.destroy', ['role' => $class->id]) }}" id="delete-form-{{ $class->id }}" method="post" style="display: none">
