@@ -25,7 +25,14 @@
                 <li class="sub-menu">
                     <a href="{{ route('teacher.index') }}">
                         <i class="fa fa-laptop"></i>
-                        <span>Teacher</span>
+                        <span>Teachers</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="{{ route('parent.index') }}">
+                        <i class="fa fa-laptop"></i>
+                        <span>Parents</span>
                     </a>
                 </li>
 

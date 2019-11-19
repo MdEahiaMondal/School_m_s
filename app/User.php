@@ -45,4 +45,9 @@ class User extends Authenticatable
         return $this->hasOne(Teacher::class);
     }
 
+    public function parnt()
+    {
+        return $this->hasOne(Parnt::class);
+    }
+
 }
