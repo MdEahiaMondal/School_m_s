@@ -78,9 +78,9 @@
                                             <td>{{ $teacher->address }}</td>
                                             <td>
                                                 <a href="{{ route('teacher.edit', ['teacher' => $teacher->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deletePermission({{ $teacher->id }})">Delete</button>
+                                                <button type="button" class="btn btn-danger" onclick="deleteTeacher({{ $teacher->id }})">Delete</button>
 
-                                                <form action="{{ route('permission.destroy', ['permission' => $teacher->id]) }}" id="delete-form-{{ $teacher->id }}" method="post" style="display: none">
+                                                <form action="{{ route('teacher.destroy', ['teacher' => $teacher->id]) }}" id="delete-form-{{ $teacher->id }}" method="post" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -121,7 +121,7 @@
 
     {{--// for tag delete--}}
     <script>
-        function deletePermission(id) {
+        function deleteTeacher(id) {
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {

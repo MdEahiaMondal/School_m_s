@@ -113,14 +113,10 @@ class TeacherController extends Controller
 
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Teacher $teacher)
     {
-        //
+        DB::table('model_has_roles')->where('model_id', $teacher->user->id)->delete(); // first delete the role
+       $teacher->user()->delete();
+        return redirect()->route('teacher.index')->with('success', 'Teacher Deleted successfully !');
     }
 }
