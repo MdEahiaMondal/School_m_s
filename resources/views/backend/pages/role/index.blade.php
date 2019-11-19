@@ -63,7 +63,12 @@
                                         <tr class="">
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $role->name }}</td>
-                                            <td>{{ $role->name }}</td>
+                                            <td>
+                                                @foreach($role->getPermissionNames() as $permission)
+                                                    <span class="badge label-danger"> {{ $permission }} </span>
+                                               @endforeach
+
+                                            </td>
                                             <td>
                                                 <a href="{{ route('permission.edit', ['permission' => $role->id]) }}" class="btn btn-primary">Edit</a>
                                                 <button type="button" class="btn btn-danger" onclick="deletePermission({{ $role->id }})">Delete</button>

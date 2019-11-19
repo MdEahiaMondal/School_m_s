@@ -16,34 +16,30 @@ class RoleController extends Controller
         return view('backend.pages.role.index', compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $permisstions = Permission::all();
         return  view('backend.pages.role.create', compact('permisstions'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+       $role =  Role::create(['name' => $request->name]);
+
+      $role->syncPermissions($request->permission_id);
+
+      return  redirect()->route('role.index')->with('success', 'Role create successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function show($id)
     {
         //

@@ -30,13 +30,20 @@
                                 <p class="alert alert-success">{{ session('success') }}</p>
                             @endif
 
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+
                                 <div class="form">
                                     <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('role.store') }}">
                                         @csrf
                                         <div class="form-group ">
-                                            <label for="firstname" class="control-label col-lg-3">Name</label>
+                                            <label for="name" class="control-label col-lg-3">Name</label>
                                             <div class="col-lg-6">
-                                                <input class=" form-control" id="firstname" name="firstname" type="text" />
+                                                <input class=" form-control" id="name" name="name" type="text" />
                                             </div>
                                         </div>
 
@@ -46,7 +53,7 @@
                                                 <div class="flat-green single-row">
                                                 @foreach($permisstions as $permission)
                                                         <div class="radio ">
-                                                            <input type="checkbox" name="permission_id[]">
+                                                            <input type="checkbox" name="permission_id[]" value="{{ $permission->id }}">
                                                             <label>{{ $permission->name }}</label>
                                                         </div>
                                                @endforeach
