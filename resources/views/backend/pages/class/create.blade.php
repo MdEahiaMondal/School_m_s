@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'create')
+@section('title', 'create Class')
 
 @push('css')
 
@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Permission Create
+                            Class Create
                             <span class="tools pull-right">
                                 <a class="fa fa-chevron-down" href="javascript:;"></a>
                                 <a class="fa fa-cog" href="javascript:;"></a>
@@ -36,7 +36,7 @@
 
 
                                 <div class="form">
-                                    <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('role.store') }}">
+                                    <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('class.store') }}">
                                         @csrf
                                         <div class="form-group ">
                                             <label for="name" class="control-label col-lg-3">Name</label>
@@ -45,25 +45,17 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Permission</label>
-                                            <div class="col-sm-8 icheck ">
-                                                <div class="flat-green single-row">
-                                                @foreach($permisstions as $permission)
-                                                        <div class="radio ">
-                                                            <input type="checkbox" name="permission_id[]" value="{{ $permission->id }}">
-                                                            <label>{{ $permission->name }}</label>
-                                                        </div>
-                                               @endforeach
-                                            </div>
+                                        <div class="form-group ">
+                                            <label for="note" class="control-label col-lg-3">Note</label>
+                                            <div class="col-lg-6">
+                                                <input class=" form-control" id="note" name="note" type="text" />
                                             </div>
                                         </div>
 
-
                                         <div class="form-group">
                                             <div class="col-lg-offset-3 col-lg-6">
-                                                <button class="btn btn-primary" type="submit">Save</button>
-                                                <button class="btn btn-default" type="button">Cancel</button>
+                                                <button class="btn btn-primary" type="submit">Create</button>
+                                                <a href="{{ route('class.index') }}" class="btn btn-default">Back</a>
                                             </div>
                                         </div>
                                     </form>

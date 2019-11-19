@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\AllClass;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use PhpParser\Builder\Class_;
 
 class AllClassController extends Controller
 {
@@ -24,19 +23,21 @@ class AllClassController extends Controller
      */
     public function create()
     {
-        //
+        return  view('backend.pages.class.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        AllClass::create([
+            'name' => $request->name,
+            'note' => $request->note,
+        ]);
+        return redirect()->route('class.index')->with('success', 'Class Create Successfully !');
     }
+
+
+
 
     /**
      * Display the specified resource.

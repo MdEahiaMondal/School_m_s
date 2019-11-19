@@ -60,13 +60,13 @@
                                     @foreach($classes as $key => $class)
                                         <tr class="">
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $$class->name }}</td>
-                                            <td>{{ $$class->note }}</td>
+                                            <td>{{ $class->name }}</td>
+                                            <td>{{ $class->note }}</td>
                                             <td>
-                                                <a href="{{ route('role.edit', ['role' => $$class->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteRole({{ $$class->id }})">Delete</button>
+                                                <a href="{{ route('class.edit', ['class' => $class->id]) }}" class="btn btn-primary">Edit</a>
+                                                <button type="button" class="btn btn-danger" onclick="deleteRole({{ $class->id }})">Delete</button>
 
-                                                <form action="{{ route('role.destroy', ['role' => $$class->id]) }}" id="delete-form-{{ $$class->id }}" method="post" style="display: none">
+                                                <form action="{{ route('role.destroy', ['role' => $class->id]) }}" id="delete-form-{{ $class->id }}" method="post" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -75,9 +75,6 @@
                                         </tr>
 
                                     @endforeach
-
-
-
                                     </tbody>
                                 </table>
                             </div>
