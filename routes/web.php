@@ -35,3 +35,7 @@ Route::resource('/teacher', 'Backend\TeacherController');
 
 //Parents
 Route::resource('/parent', 'Backend\ParntController');
+
+
+//Students
+Route::resource('/student', 'Backend\StudentController');

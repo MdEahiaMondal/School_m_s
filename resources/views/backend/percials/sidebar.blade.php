@@ -24,15 +24,22 @@
 
                 <li class="sub-menu">
                     <a href="{{ route('teacher.index') }}" class="{{ Request::is('teacher*') ? 'active' : '' }}">
-                        <i class="fa fa-laptop"></i>
+                        <i class="fa  fa-group"></i>
                         <span>Teachers</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
                     <a href="{{ route('parent.index') }}" class="{{ Request::is('parent*') ? 'active' : '' }}">
-                        <i class="fa fa-laptop"></i>
+                        <i class="fa  fa-group"></i>
                         <span>Parents</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="{{ route('parent.index') }}" class="{{ Request::is('parent*') ? 'active' : '' }}">
+                        <i class="fa fa-group"></i>
+                        <span>Students</span>
                     </a>
                 </li>
 
