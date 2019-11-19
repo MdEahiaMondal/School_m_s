@@ -43,6 +43,13 @@
                     </a>
                 </li>
 
+                <li class="sub-menu">
+                    <a href="{{ route('class.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
+                        <i class="fa fa-class"></i>
+                        <span>Class</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- sidebar menu end-->
