@@ -15,9 +15,7 @@
         <section class="wrapper">
             <!-- page start-->
 
-            @if(session('success'))
-                <p class="alert alert-success">{{ session('success') }}</p>
-            @endif
+            @include('backend.message.message')
 
             <div class="row">
                 <div class="col-sm-12">

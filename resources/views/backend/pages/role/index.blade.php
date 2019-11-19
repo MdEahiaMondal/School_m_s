@@ -15,9 +15,7 @@
         <section class="wrapper">
             <!-- page start-->
 
-            @if(session('success'))
-                <p class="alert alert-success">{{ session('success') }}</p>
-            @endif
+            @include('backend.message.message')
 
             <div class="row">
                 <div class="col-sm-12">
@@ -71,7 +69,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('role.edit', ['role' => $role->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deletePermission({{ $role->id }})">Delete</button>
+                                                <button type="button" class="btn btn-danger" onclick="deleteRole({{ $role->id }})">Delete</button>
 
                                                 <form action="{{ route('role.destroy', ['role' => $role->id]) }}" id="delete-form-{{ $role->id }}" method="post" style="display: none">
                                                     @csrf
@@ -114,7 +112,7 @@
 
     {{--// for tag delete--}}
     <script>
-        function deletePermission(id) {
+        function deleteRole(id) {
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {

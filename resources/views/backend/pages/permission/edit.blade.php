@@ -25,9 +25,7 @@
                         </header>
                         <div class="panel-body">
 
-                            @if(session('success'))
-                                <p class="alert alert-success">{{ session('success') }}</p>
-                            @endif
+                            @include('backend.message.message')
 
                             <form class="form-horizontal bucket-form" method="post" action="{{ route('permission.update', ['permission' => $permission->id]) }}">
                                 @csrf

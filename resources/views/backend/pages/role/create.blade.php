@@ -26,9 +26,7 @@
                         </header>
                         <div class="panel-body">
 
-                            @if(session('success'))
-                                <p class="alert alert-success">{{ session('success') }}</p>
-                            @endif
+                          @include('backend.message.message')
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">

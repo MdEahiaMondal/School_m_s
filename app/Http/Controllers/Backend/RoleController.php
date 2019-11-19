@@ -70,14 +70,11 @@ class RoleController extends Controller
         return  redirect()->route('role.index')->with('success', 'Role Updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function destroy($id)
     {
-        //
+        Role::findOrFail($id)->delete();
+        return  redirect()->route('role.index')->with('success', 'Role Deleted successfully');
     }
 }
