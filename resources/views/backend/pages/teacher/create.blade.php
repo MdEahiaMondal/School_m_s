@@ -28,6 +28,11 @@
                                         <label for="name" class="col-lg-2 col-sm-2 control-label">Name</label>
                                         <div class="col-lg-10">
                                             <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="name" placeholder="Name">
+                                            @error('name')
+                                                <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -35,6 +40,11 @@
                                         <label for="inputEmail1" class="col-lg-2 col-sm-2 control-label">Email</label>
                                         <div class="col-lg-10">
                                             <input type="email" value="{{ old('email') }}"  name="email" class="form-control" id="inputEmail1" placeholder="Email">
+                                            @error('email')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -42,6 +52,11 @@
                                         <label for="inputPassword1" class="col-lg-2 col-sm-2 control-label">Password</label>
                                         <div class="col-lg-10">
                                             <input type="password" class="form-control" name="password" id="inputPassword1" placeholder="Password">
+                                            @error('password')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -49,6 +64,11 @@
                                         <label for="phone" class="col-lg-2 col-sm-2 control-label">Phone</label>
                                         <div class="col-lg-10">
                                             <input type="text" value="{{ old('phone') }}" name="phone" class="form-control" id="phone" placeholder="Phone">
+                                            @error('phone')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -57,6 +77,11 @@
                                         <label for="subject" class="col-lg-2 col-sm-2 control-label">Subject</label>
                                         <div class="col-lg-10">
                                             <input type="text" value="{{ old('subject') }}" name="subject" class="form-control" id="subject" placeholder="Subject">
+                                            @error('subject')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -64,6 +89,11 @@
                                         <label for="education" class="col-lg-2 col-sm-2 control-label">Education</label>
                                         <div class="col-lg-10">
                                             <input type="text" value="{{ old('education') }}" name="education" class="form-control" id="education" placeholder="Education">
+                                            @error('education')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -71,6 +101,11 @@
                                         <label for="address" class="col-lg-2 col-sm-2 control-label">Address</label>
                                         <div class="col-lg-10">
                                             <textarea name="address" id="address" cols="30" class="form-control" rows="5"> {{ old('address') }}  </textarea>
+                                            @error('address')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 

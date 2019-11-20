@@ -78,12 +78,15 @@
                                             <td>{{ $teacher->address }}</td>
                                             <td>
                                                 <a href="{{ route('teacher.edit', ['teacher' => $teacher->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteTeacher({{ $teacher->id }})">Delete</button>
 
-                                                <form action="{{ route('teacher.destroy', ['teacher' => $teacher->id]) }}" id="delete-form-{{ $teacher->id }}" method="post" style="display: none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                @can('teacher delete')
+                                                    <button type="button" class="btn btn-danger" onclick="deleteTeacher({{ $teacher->id }})">Delete</button>
+
+                                                    <form action="{{ route('teacher.destroy', ['teacher' => $teacher->id]) }}" id="delete-form-{{ $teacher->id }}" method="post" style="display: none">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                               @endcan
 
                                             </td>
                                         </tr>

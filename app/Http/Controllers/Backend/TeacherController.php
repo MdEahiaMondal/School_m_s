@@ -13,6 +13,11 @@ use Spatie\Permission\Models\Role;
 class TeacherController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('role:admin|carani');
+        $this->middleware('permission:teacher create|teacher edit')->except('delete');
+    }
 
     public function index()
     {
@@ -57,10 +62,11 @@ class TeacherController extends Controller
         return [
             'name' => 'required',
             'email' => 'required|unique:users,email',
-            'phone' => 'required',
+            'phone' => 'required|unique:teachers,phone',
             'subject' => 'required',
             'education' => 'required',
             'address' => 'required',
+            'password' => 'required',
         ];
     }
 
@@ -104,7 +110,7 @@ class TeacherController extends Controller
         return [
             'name' => 'required',
             'email' => 'required|unique:users,email,'.$teacher->user_id.',id',
-            'phone' => 'required',
+            'phone' => 'required|unique:teachers,phone,'.$teacher->id,
             'subject' => 'required',
             'education' => 'required',
             'address' => 'required',

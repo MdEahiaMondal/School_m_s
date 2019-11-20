@@ -40,14 +40,14 @@ Route::resource('teacher', 'Backend\TeacherController');
 
 
 //Parents
-Route::resource('parent', 'Backend\ParntController');
+Route::resource('parent', 'Backend\ParntController')->middleware('role:admin');
 
 
 //Students
-Route::resource('students', 'Backend\StudentController');
+Route::resource('students', 'Backend\StudentController')->middleware('role:admin');
 
 //Class
-Route::resource('all_classes', 'Backend\AllClassController');
+Route::resource('all_classes', 'Backend\AllClassController')->middleware('role:admin');
 
 
 //Attendance

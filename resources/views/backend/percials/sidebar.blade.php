@@ -28,14 +28,14 @@
                 @endrole
 
 
-                @role('admin')
+                @can('teacher create')
                 <li class="sub-menu">
                     <a href="{{ route('teacher.index') }}" class="{{ Request::is('teacher*') ? 'active' : '' }}">
                         <i class="fa  fa-group"></i>
                         <span>Teachers</span>
                     </a>
                 </li>
-                @endrole
+                @endcan
 
                 @role('admin')
                 <li class="sub-menu">
