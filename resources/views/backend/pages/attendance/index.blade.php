@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'Students')
+@section('title', 'Attendance')
 
 @push('css')
 
@@ -21,7 +21,7 @@
                 <div class="col-sm-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Students Table
+                            Students Attendance Table
                             <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -32,7 +32,7 @@
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('students.create') }}">
+                                        <a class="btn btn-primary" href="{{ route('attendances.create') }}">
                                             Add New <i class="fa fa-plus"></i>
                                         </a>
                                     </div>
@@ -51,12 +51,13 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">Si</th>
-                                            <th class="text-center">Name</th>
-                                            <th class="text-center">Email</th>
-                                            <th class="text-center">Phone</th>
-                                            <th class="text-center">Roll</th>
+                                            <th class="text-center">Student Name</th>
                                             <th class="text-center">Class</th>
-                                            <th class="text-center">Role</th>
+                                            <th class="text-center">Roll</th>
+                                            <th class="text-center">Phone</th>
+                                            <th class="text-center">Date</th>
+                                            <th class="text-center">Teacher</th>
+                                            <th class="text-center">Attendance Type</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                     </thead>

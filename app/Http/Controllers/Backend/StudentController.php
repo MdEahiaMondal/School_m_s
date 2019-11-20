@@ -9,6 +9,7 @@ use App\Student;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -56,7 +57,7 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
-        //
+
     }
 
 
@@ -78,14 +79,11 @@ class StudentController extends Controller
         return redirect()->route('students.index')->with('success', 'Student Updated Successfully !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Student $student)
     {
-        //
+        DB::table('model_has_roles')->where('model_id', $student->user->id)->delete(); // first delete old role
+      $student->user()->delete();
+        return redirect()->route('students.index')->with('success', 'Student Updated Successfully !');
     }
 }

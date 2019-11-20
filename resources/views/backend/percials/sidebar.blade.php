@@ -50,6 +50,13 @@
                     </a>
                 </li>
 
+                <li class="sub-menu">
+                    <a href="{{ route('attendances.index') }}" class="{{ Request::is('attendances*') ? 'active' : '' }}">
+                        <i class="fa fa-class"></i>
+                        <span>Attandance</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- sidebar menu end-->

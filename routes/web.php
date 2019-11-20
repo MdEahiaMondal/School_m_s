@@ -42,3 +42,7 @@ Route::resource('students', 'Backend\StudentController');
 
 //Class
 Route::resource('all_classes', 'Backend\AllClassController');
+
+
+//Attendance
+Route::resource('attendances', 'Backend\AttendanceController');
