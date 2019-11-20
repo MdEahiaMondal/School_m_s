@@ -220,8 +220,9 @@
                                         <div class="prf-contacts sttng">
                                             <h2>  Personal Information</h2>
                                         </div>
-                                        <form class="form-horizontal" role="form" method="post" action="{{ route('students.store') }}">
+                                        <form class="form-horizontal" role="form" method="post" action="{{ route('students.update', $student->id) }}">
                                             @csrf
+                                            @method('PATCH')
                                             <div class="form-group">
                                                 <label for="name" class="col-lg-2 col-sm-2 control-label">Name <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                                 <div class="col-lg-10">

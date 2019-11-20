@@ -23,20 +23,37 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $id = isset($this->student) ? $this->student->user->id : null;
+        $student_id = isset($this->student) ? $this->student->id : null;
+       $rules = [
            'name' => 'required|string|max:100',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|max:15',
-            'phone' => 'required|unique:students,phone',
             'parent_id' => 'required',
             'parent_phone' => 'required',
             'class_id' => 'required',
-            'roll_number' => 'required|unique:students,roll_number',
             'age' => 'required',
             'gender' => 'required',
             'date_of_birth' => 'nullable|max:10',
             'address' => 'nullable|string',
         ];
+
+       if (request()->isMethod('post'))
+       {
+           $rules['password'] ='required|max:15';
+           $rules['email'] = 'required|unique:users,email';
+           $rules['phone'] = 'required|unique:students,phone';
+           $rules['roll_number'] = 'required|unique:students,roll_number';
+       }
+
+       if (request()->isMethod('put') or request()->isMethod('PATCH'))
+       {
+           $rules['password'] ='nullable|max:15';
+           $rules['email'] = 'required|unique:users,email,'.$id;
+           $rules['phone'] = 'required|unique:students,phone,'.$student_id;
+           $rules['roll_number'] = 'required|unique:students,roll_number,'.$student_id;
+       }
+
+       return  $rules;
+
     }
 
 

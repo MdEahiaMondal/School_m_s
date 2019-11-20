@@ -53,27 +53,29 @@ class StudentController extends Controller
        return view('backend.pages.students.profile', compact('student','parents','classes'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Student $student)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Student $student)
+
+    public function update(StudentRequest $request, Student $student)
     {
-        //
+            $user = [
+           'name' => $request->name,
+            'email' => $request->email,
+            ];
+
+            if (isset($request->passqord)){
+                $user['password'] = Hash::make($request->password);
+            }
+        $student->user()->update($user);
+
+
+        $student->update($request->all());
+
+        return redirect()->route('students.index')->with('success', 'Student Updated Successfully !');
     }
 
     /**
