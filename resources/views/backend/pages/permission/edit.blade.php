@@ -35,6 +35,11 @@
                                     <div class="col-lg-6">
                                         <div class="input-group m-bot15">
                                             <input type="text" name="name" value="{{ $permission->name }}" placeholder="Permission name" required autofocus class="form-control">
+                                            @error('name')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" type="submit">UPDATE!</button>
                                               </span>

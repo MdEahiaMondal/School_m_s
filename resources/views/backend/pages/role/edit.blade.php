@@ -43,6 +43,11 @@
                                         <label for="name" class="control-label col-lg-3">Name</label>
                                         <div class="col-lg-6">
                                             <input class=" form-control" id="name" value="{{ $role->name }}" name="name" type="text" />
+                                            @error('name')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
