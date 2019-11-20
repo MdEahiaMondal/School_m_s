@@ -199,7 +199,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <img alt="" src="images/avatar1_small.jpg">
-                    <span class="username">John Doe</span>
+                    <span class="username">{{ auth()->user()->name }}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">

@@ -62,25 +62,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($students as $key => $student)
+                                    @foreach($attendances as $key => $attendance)
                                         <tr class="">
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $student->user->name }}</td>
-                                            <td>{{ $student->user->email }}</td>
-                                            <td>{{ $student->phone }}</td>
-                                            <td>{{ $student->roll_number }}</td>
-                                            <td>{{ $student->Class->name }}</td>
+                                            <td>{{ $attendance->student->user->name }}</td>
+                                            <td>{{ $attendance->class->name }}</td>
+                                            <td>{{ $attendance->student->roll_number }}</td>
+                                            <td>{{ $attendance->student->phone }}</td>
+                                            <td>{{ $attendance->attendance_date }}</td>
+                                            <td>{{ ($attendance->user->name) }}</td>
                                             <td>
-                                                @foreach($student->user->getRoleNames() as $role)
-                                                    <span class="badge label-danger"> {{ $role }} </span>
-                                                @endforeach
+
+                                                @if($attendance->attendance_status == 1)
+                                                    <span class="badge label-success">Present</span>
+                                                    @else
+                                                    <span class="badge label-danger">Absent</span>
+                                              @endif
+
                                             </td>
                                             <td>
-                                                <a title="view" href="{{ route('students.show', $student->id) }}" class="btn btn-primary"><i class="fa  fa-eye"></i></a>
-                                                <a href="{{ route('students.show', ['student' => $student->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteStudent({{ $student->id }})">Delete</button>
+                                                <a title="view" href="{{ route('students.show', $attendance->id) }}" class="btn btn-primary"><i class="fa  fa-eye"></i></a>
+                                                <a href="{{ route('students.show', ['student' => $attendance->id]) }}" class="btn btn-primary">Edit</a>
+                                                <button type="button" class="btn btn-danger" onclick="deleteStudent({{ $attendance->id }})">Delete</button>
 
-                                                <form action="{{ route('students.destroy', $student->id) }}" id="delete-form-{{ $student->id }}" method="post" style="display: none">
+                                                <form action="{{ route('students.destroy', $attendance->id) }}" id="delete-form-{{ $attendance->id }}" method="post" style="display: none">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>

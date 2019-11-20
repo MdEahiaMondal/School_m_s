@@ -16,7 +16,8 @@ class AttendanceController extends Controller
     {
         $students = Student::latest()->get();
         $classes = AllClass::latest()->get();
-        return view('backend.pages.attendance.index', compact('students', 'classes'));
+        $attendances = Attendance::latest()->get();
+        return view('backend.pages.attendance.index', compact('students', 'classes', 'attendances'));
     }
 
 
@@ -33,7 +34,8 @@ class AttendanceController extends Controller
     {
          $request->validate($this->AttendanceStoreValidator(), $this->CustomErrorMessage());
 
-        $request['teacher_id'] = Auth::user()->id;
+        $request['teacher_id'] = auth()->user()->id;
+
 
          Attendance::create($request->all());
 
