@@ -99,19 +99,15 @@ class AttendanceController extends Controller
 
         $attendance->update($request->all());
 
-        return redirect()->route('attendances.index')->with('success', 'Attendance Update Successfully !');
+        return redirect()->route('attendances.index')->with('success', 'Attendance Updated Successfully !');
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Attendance $attendance)
     {
-        //
+       $attendance->delete();
+        return redirect()->route('attendances.index')->with('success', 'Attendance Deleted Successfully !');
     }
 
     private function AttendanceStoreValidator()
