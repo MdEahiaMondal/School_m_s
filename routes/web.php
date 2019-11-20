@@ -22,6 +22,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //******************************** Backend ***************************************
 
+// Auth
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+
+/*@if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+@endif*/
+
+
 // admistration
 Route::resource('/admin', 'Backend\AdminController');
 Route::resource('/permission', 'Backend\PermissionController');

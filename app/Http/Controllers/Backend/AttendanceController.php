@@ -33,7 +33,7 @@ class AttendanceController extends Controller
     {
          $request->validate($this->AttendanceStoreValidator(), $this->CustomErrorMessage());
 
-         $request['teacher_id'] = Auth::user();
+        $request['teacher_id'] = Auth::user()->id;
 
          Attendance::create($request->all());
 
@@ -88,10 +88,10 @@ class AttendanceController extends Controller
     private function AttendanceStoreValidator()
     {
         return [
-            'student_id' => 'required',
-            'class_id' => 'required',
-            'attendance_status' => 'required',
-            'attendance_date' => 'required',
+            'student_id' => 'required|numeric',
+            'class_id' => 'required|numeric',
+            'attendance_status' => 'required|boolean',
+            'attendance_date' => 'required|date',
         ];
     }
 

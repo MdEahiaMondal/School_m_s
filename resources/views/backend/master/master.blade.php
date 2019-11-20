@@ -31,10 +31,15 @@
 <body>
 <section id="container">
     <!--header start-->
-    @include('backend.percials.header')
+    @if(!Request::is('login*'))
+        @include('backend.percials.header')
+    @endif
+
     <!--header end-->
     <!--sidebar start-->
-    @include('backend.percials.sidebar')
+    @if(!Request::is('login*'))
+        @include('backend.percials.sidebar')
+    @endif
     <!--sidebar end-->
     <!--main content start-->
         @yield('mainContent')
