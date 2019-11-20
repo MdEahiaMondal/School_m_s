@@ -14,4 +14,9 @@ class Parnt extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

@@ -34,8 +34,8 @@ class StudentRequest extends FormRequest
             'roll_number' => 'required|unique:students,roll_number',
             'age' => 'required',
             'gender' => 'required',
-            'date_of_birth' => 'required|max:10',
-            'address' => 'required',
+            'date_of_birth' => 'nullable|max:10',
+            'address' => 'nullable|string',
         ];
     }
 

@@ -75,6 +75,7 @@
                                                 @endforeach
                                             </td>
                                             <td>
+                                                <a title="view" href="{{ route('students.show', $student->id) }}" class="btn btn-primary"><i class="fa  fa-eye"></i></a>
                                                 <a href="{{ route('parent.edit', ['parent' => $student->id]) }}" class="btn btn-primary">Edit</a>
                                                 <button type="button" class="btn btn-danger" onclick="deleteParent({{ $student->id }})">Delete</button>
 

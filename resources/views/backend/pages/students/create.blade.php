@@ -79,7 +79,7 @@
                                             <select name="parent_id" class="form-control m-bot15">
                                                 <option value="">===>Choose Parents===></option>
                                                 @foreach($parents as $parent)
-                                                    <option value="{{ $parent->user->id }}">{{ $parent->user->name }}</option>
+                                                    <option value="{{ $parent->id }}">{{ $parent->user->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('parent_id')

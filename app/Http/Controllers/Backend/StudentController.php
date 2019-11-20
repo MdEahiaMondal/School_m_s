@@ -45,15 +45,12 @@ class StudentController extends Controller
        return redirect()->route('students.index')->with('success', 'Student create Successfully !');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Student $student)
     {
-        //
+        $parents = Parnt::latest()->get();
+        $classes = AllClass::latest()->get();
+       return view('backend.pages.students.profile', compact('student','parents','classes'));
     }
 
     /**
