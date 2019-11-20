@@ -37,7 +37,7 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="{{ route('parent.index') }}" class="{{ Request::is('parent*') ? 'active' : '' }}">
+                    <a href="{{ route('students.index') }}" class="{{ Request::is('students*') ? 'active' : '' }}">
                         <i class="fa fa-group"></i>
                         <span>Students</span>
                     </a>

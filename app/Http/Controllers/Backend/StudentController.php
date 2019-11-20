@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\AllClass;
+use App\Parnt;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -11,17 +13,16 @@ class StudentController extends Controller
 
     public function index()
     {
-        //
+        $students = Student::latest()->get();
+       return view('backend.pages.students.index', compact('students'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $classes = AllClass::latest()->get();
+        $parents = Parnt::latest()->get();
+       return view('backend.pages.students.create', compact('classes','parents'));
     }
 
     /**
