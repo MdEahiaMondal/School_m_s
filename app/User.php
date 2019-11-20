@@ -50,4 +50,14 @@ class User extends Authenticatable
         return $this->hasOne(Parnt::class);
     }
 
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function Student_Class()
+    {
+        return $this->belongsTo(AllClass::class);
+    }
+
 }

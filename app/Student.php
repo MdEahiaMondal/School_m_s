@@ -15,9 +15,9 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function sClass()
+    public function Class()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(AllClass::class);
     }
 
 

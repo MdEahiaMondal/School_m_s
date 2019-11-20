@@ -82,6 +82,11 @@
                                                     <option value="{{ $parent->user->id }}">{{ $parent->user->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('parent_id')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -107,6 +112,11 @@
                                                     <option value="{{ $class->id }}">{{ $class->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('class_id')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -140,7 +150,7 @@
 
                                         <div class="col-sm-10 icheck ">
                                             <div class="radio square-green ">
-                                                <input tabindex="3" type="radio" value="male" name="gender">
+                                                <input tabindex="3" type="radio" checked value="male" name="gender">
                                                 <label>Male</label>
                                             </div>
 
@@ -148,12 +158,6 @@
                                                 <input tabindex="3" type="radio" value="female"  name="gender">
                                                 <label>Female </label>
                                             </div>
-
-                                            @error('gender')
-                                            <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
                                         </div>
                                     </div>
 

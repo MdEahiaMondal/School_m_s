@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Backend;
 
 use App\AllClass;
+use App\Http\Requests\Student\StudentRequest;
 use App\Parnt;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
 
     public function index()
     {
-        $students = Student::latest()->get();
+        $students = Student::with('Class')->latest()->get();
        return view('backend.pages.students.index', compact('students'));
     }
 
@@ -25,15 +28,21 @@ class StudentController extends Controller
        return view('backend.pages.students.create', compact('classes','parents'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(StudentRequest $request)
     {
-        //
+       $user = User::create([
+           'name' => $request->name,
+           'email' => $request->email,
+           'password' => Hash::make($request->password),
+       ]);
+
+        $user->assignRole('student');
+
+       $user->student()->create($request->all());
+
+
+       return redirect()->route('students.index')->with('success', 'Student create Successfully !');
     }
 
     /**

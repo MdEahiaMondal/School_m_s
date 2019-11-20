@@ -10,9 +10,9 @@ class AllClass extends Model
         'name', 'note',
     ];
 
-    public function srudent()
+    public function srudents()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(User::class);
     }
 
 }
