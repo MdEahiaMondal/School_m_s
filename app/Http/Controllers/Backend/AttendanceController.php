@@ -14,10 +14,8 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        $students = Student::latest()->get();
-        $classes = AllClass::latest()->get();
         $attendances = Attendance::latest()->get();
-        return view('backend.pages.attendance.index', compact('students', 'classes', 'attendances'));
+        return view('backend.pages.attendance.index', compact('attendances'));
     }
 
 
@@ -33,6 +31,20 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
          $request->validate($this->AttendanceStoreValidator(), $this->CustomErrorMessage());
+
+
+         $existAttendance = Attendance::where([
+             'teacher_id' => \auth()->user()->id,
+             'class_id' => $request->class_id,
+             'student_id' => $request->student_id,
+             'attendance_date' => $request->attendance_date,
+         ])->first();
+
+        if (isset($existAttendance))
+        {
+            return back()->with('error', 'Attendance alredy taken');
+        }
+
 
         $request['teacher_id'] = auth()->user()->id;
 
@@ -53,27 +65,42 @@ class AttendanceController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function edit(Attendance $attendance)
     {
-        //
+        $students = Student::latest()->get();
+        $classes = AllClass::latest()->get();
+        return view('backend.pages.attendance.edit', compact('attendance', 'students', 'classes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Attendance $attendance)
     {
-        //
+        $request->validate([
+                'student_id' => 'required|numeric',
+                'class_id' => 'required|numeric',
+                'attendance_status' => 'required|boolean',
+                'attendance_date' => 'required|date',
+        ]);
+
+        $existAttendance = Attendance::where([
+            'teacher_id' => \auth()->user()->id,
+            'class_id' => $request->class_id,
+            'student_id' => $request->student_id,
+        ])->where('id', '!=', $attendance->id)
+            ->first();
+
+        if (isset($existAttendance)){
+            return back()->with('error', 'Attendance alredy taken');
+        }
+
+        $request['teacher_id'] = auth()->user()->id;
+
+        $attendance->update($request->all());
+
+        return redirect()->route('attendances.index')->with('success', 'Attendance Update Successfully !');
+
     }
 
     /**

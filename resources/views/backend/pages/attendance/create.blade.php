@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'Create Student')
+@section('title', 'Create Student Attendance')
 
 @push('css')
 
@@ -19,9 +19,12 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Student Forms
+                            Student Attendance Forms
                         </header>
                         <div class="panel-body">
+
+                            @include('backend.message.message')
+
                             <div class="position-center">
                                 <form class="form-horizontal" role="form" method="post" action="{{ route('attendances.store') }}">
                                     @csrf
@@ -62,7 +65,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
+                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Status <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                         <div class="col-lg-10">
                                             <select name="attendance_status" class="form-control m-bot15">
                                                 <option value="1">Present</option>

@@ -81,8 +81,7 @@
 
                                             </td>
                                             <td>
-                                                <a title="view" href="{{ route('students.show', $attendance->id) }}" class="btn btn-primary"><i class="fa  fa-eye"></i></a>
-                                                <a href="{{ route('students.show', ['student' => $attendance->id]) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('attendances.edit', $attendance->id) }}" class="btn btn-primary">Edit</a>
                                                 <button type="button" class="btn btn-danger" onclick="deleteStudent({{ $attendance->id }})">Delete</button>
 
                                                 <form action="{{ route('students.destroy', $attendance->id) }}" id="delete-form-{{ $attendance->id }}" method="post" style="display: none">
