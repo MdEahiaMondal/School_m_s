@@ -4,13 +4,17 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
 
-                <li>
-                    <a class="{{ Request::is('admin') ? 'active' : '' }}" href="{{ route('admin.index') }}">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
 
+                    <li>
+                        <a class="{{ Request::is('admin') ? 'active' : '' }}" href="{{ route('admin.index') }}">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+
+
+                @role('admin')
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-barcode"></i>
@@ -21,41 +25,54 @@
                         <li><a href="{{ route('role.index') }}">Manage Role</a></li>
                     </ul>
                 </li>
+                @endrole
 
+
+                @role('admin')
                 <li class="sub-menu">
                     <a href="{{ route('teacher.index') }}" class="{{ Request::is('teacher*') ? 'active' : '' }}">
                         <i class="fa  fa-group"></i>
                         <span>Teachers</span>
                     </a>
                 </li>
+                @endrole
 
+                @role('admin')
                 <li class="sub-menu">
                     <a href="{{ route('parent.index') }}" class="{{ Request::is('parent*') ? 'active' : '' }}">
                         <i class="fa  fa-group"></i>
                         <span>Parents</span>
                     </a>
                 </li>
+                @endrole
 
-                <li class="sub-menu">
-                    <a href="{{ route('students.index') }}" class="{{ Request::is('students*') ? 'active' : '' }}">
-                        <i class="fa fa-group"></i>
-                        <span>Students</span>
-                    </a>
-                </li>
-
+                @role('admin')
                 <li class="sub-menu">
                     <a href="{{ route('all_classes.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
                         <i class="fa fa-shield"></i>
                         <span>Class</span>
                     </a>
                 </li>
+                @endrole
 
+                @role('admin')
+                <li class="sub-menu">
+                    <a href="{{ route('students.index') }}" class="{{ Request::is('students*') ? 'active' : '' }}">
+                        <i class="fa fa-group"></i>
+                        <span>Students</span>
+                    </a>
+                </li>
+                @endrole
+
+
+                @role('teacher|admin')
                 <li class="sub-menu">
                     <a href="{{ route('attendances.index') }}" class="{{ Request::is('attendances*') ? 'active' : '' }}">
                         <i class="fa  fa-credit-card"></i>
                         <span>Attandance</span>
                     </a>
                 </li>
+                @endrole
 
             </ul>
         </div>

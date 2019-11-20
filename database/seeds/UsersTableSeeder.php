@@ -23,6 +23,17 @@ class UsersTableSeeder extends Seeder
 
         ]);
 
+  $role = DB::table('roles')->insert([
+            'name' => 'admin',
+            'guard_name' => 'web',
+        ]);
+
+  DB::table('model_has_roles')->insert([
+            'role_id' => $role,
+            'model_type' => 'App\User',
+            'model_id' => $user_id,
+        ]);
+
        DB::table('teachers')->insert([
             'user_id' => $user_id,
             'phone' => '01521414629',
