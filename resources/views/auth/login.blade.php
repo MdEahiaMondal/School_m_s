@@ -18,7 +18,14 @@
 
         <form class="form-signin" method="POST" action="{{ route('login') }}">
             @csrf
-            <h2 class="form-signin-heading">sign in now</h2>
+            <h2 class="form-signin-heading">
+                sign in now
+                <br>
+                <br>
+               <small style="color: white" class="badge label-default"> admin@gmail.com  ==>  12345678</small>
+               <small style="color: white" class="badge label-default"> teacher@gmail.com  ==>  12345678</small>
+               <small style="color: white" class="badge label-default"> student@gmail.com  ==>  12345678</small>
+            </h2>
             <div class="login-wrap">
                 <div class="user-login-info">
                     <div class="form-group row">
@@ -61,8 +68,6 @@
                             @endif
                         </div>
                     </div>
-
-                </span>
                 </label>
                 <button type="submit" class="btn btn-lg btn-login btn-block">
                     {{ __('Login') }}

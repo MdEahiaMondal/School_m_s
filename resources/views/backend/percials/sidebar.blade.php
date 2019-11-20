@@ -13,7 +13,7 @@
 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-laptop"></i>
+                        <i class="fa fa-barcode"></i>
                         <span>Administration</span>
                     </a>
                     <ul class="sub">
@@ -45,14 +45,14 @@
 
                 <li class="sub-menu">
                     <a href="{{ route('all_classes.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
-                        <i class="fa fa-class"></i>
+                        <i class="fa fa-shield"></i>
                         <span>Class</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
                     <a href="{{ route('attendances.index') }}" class="{{ Request::is('attendances*') ? 'active' : '' }}">
-                        <i class="fa fa-class"></i>
+                        <i class="fa  fa-credit-card"></i>
                         <span>Attandance</span>
                     </a>
                 </li>
