@@ -30,7 +30,6 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function() {
 
-
 // admistration
     Route::resource('/admin', 'Backend\AdminController');
     Route::resource('/permission', 'Backend\PermissionController');
@@ -56,6 +55,9 @@ Route::group(['middleware' => ['auth']], function() {
 //Attendance
     Route::resource('attendances', 'Backend\AttendanceController');
 
+// user profile
+
+    Route::resource('profiles', 'Backend\ProfileControler');
 
 });
 

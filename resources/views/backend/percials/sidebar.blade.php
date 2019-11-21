@@ -22,7 +22,8 @@
                         </a>
                         <ul class="sub">
                             <li><a class="{{ Request::is('permission*') ? 'active' : '' }}"  href="{{ route('permission.index') }}">Manage Permission</a></li>
-                            <li><a  class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{ route('role.index') }}">Manage Role</a></li>
+                            <li><a  class="{{ Request::is('role*') ? 'active' : '' }}" href="{{ route('role.index') }}">Manage Role</a></li>
+                            <li><a  class="{{ Request::is('particularPermission*') ? 'active' : '' }}" href="{{ route('role.index') }}">Manage Direct Permission</a></li>
                         </ul>
                     </li>
                 @endrole
