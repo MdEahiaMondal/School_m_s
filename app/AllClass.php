@@ -15,4 +15,9 @@ class AllClass extends Model
         return $this->hasMany(User::class);
     }
 
+    public function classGroup()
+    {
+        return $this->hasMany(ClassGroup::class);
+    }
+
 }
