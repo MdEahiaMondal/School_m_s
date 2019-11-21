@@ -12,9 +12,28 @@ use Illuminate\Support\Facades\Auth;
 class AttendanceController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:attendance show|attendance create|attendance edit|attendance delete', ['only' => ['index','show']]);
+        $this->middleware('permission:attendance create')->only('create');
+        $this->middleware('permission:attendance edit')->only(['edit','update']);
+        $this->middleware('permission:attendance delete')->only('destroy');
+    }
+
+
+
     public function index()
     {
-        $attendances = Attendance::latest()->get();
+
+        if (auth()->user()->hasRole('admin'))
+        {
+            $attendances = Attendance::latest()->get();
+        }else{
+            $attendances = Attendance::where('teacher_id', auth()->user()->id)->latest()->get();
+        }
+
         return view('backend.pages.attendance.index', compact('attendances'));
     }
 
