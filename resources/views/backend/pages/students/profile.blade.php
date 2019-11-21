@@ -74,11 +74,13 @@
                                         Overview
                                     </a>
                                 </li>
-                                <li>
-                                    <a data-toggle="tab" href="#settings">
-                                        Settings
-                                    </a>
-                                </li>
+                                @if(auth()->user()->can('student edit'))
+                                    <li>
+                                        <a data-toggle="tab" href="#settings">
+                                            Settings
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </header>
                         <div class="panel-body">

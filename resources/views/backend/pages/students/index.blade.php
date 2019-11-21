@@ -31,11 +31,13 @@
                         <div class="panel-body">
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('students.create') }}">
-                                            Add New <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
+                                    @if(auth()->user()->can('student create'))
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="{{ route('students.create') }}">
+                                                Add New <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    @endif
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                         </button>
@@ -75,15 +77,24 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <a title="view" href="{{ route('students.show', $student->id) }}" class="btn btn-primary"><i class="fa  fa-eye"></i></a>
-                                                <a href="{{ route('students.show', ['student' => $student->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteStudent({{ $student->id }})">Delete</button>
 
-                                                <form action="{{ route('students.destroy', $student->id) }}" id="delete-form-{{ $student->id }}" method="post" style="display: none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                @if(auth()->user()->can('student show'))
+                                                    <a title="view" href="{{ route('students.show', $student->id) }}" class="btn btn-primary"><i class="fa  fa-eye"></i></a>
+                                                @endif
 
+                                                @if(auth()->user()->can('student edit'))
+                                                    <a href="{{ route('students.show', ['student' => $student->id]) }}" class="btn btn-primary">Edit</a>
+                                                @endif
+
+                                                 @if(auth()->user()->can('student delete'))
+                                                    <button type="button" class="btn btn-danger" onclick="deleteStudent({{ $student->id }})">Delete</button>
+
+
+                                                    <form action="{{ route('students.destroy', $student->id) }}" id="delete-form-{{ $student->id }}" method="post" style="display: none">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                 @endif
                                             </td>
                                         </tr>
 

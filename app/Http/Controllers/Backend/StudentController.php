@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
 
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,6 +24,7 @@ class StudentController extends Controller
         $this->middleware('permission:student edit')->only(['edit','update']);
         $this->middleware('permission:student delete')->only('destroy');
     }
+
 
     public function index()
     {
