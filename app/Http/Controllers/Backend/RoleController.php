@@ -10,6 +10,13 @@ use Spatie\Permission\Models\Role;
 class RoleController extends Controller
 {
 
+
+    public function __construct()
+    {
+        $this->middleware('role:admin');
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $roles = Role::latest()->get();
@@ -42,7 +49,7 @@ class RoleController extends Controller
 
     public function show($id)
     {
-        //
+        return view('backend.pages.errorPage.404');
     }
 
 

@@ -31,11 +31,15 @@
                         <div class="panel-body">
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('teacher.create') }}">
-                                            Add New <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
+
+                                    @if(auth()->user()->can('teacher create'))
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="{{ route('teacher.create') }}">
+                                                Add New <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    @endif
+
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                         </button>
@@ -77,16 +81,19 @@
                                             </td>
                                             <td>{{ $teacher->address }}</td>
                                             <td>
-                                                <a href="{{ route('teacher.edit', ['teacher' => $teacher->id]) }}" class="btn btn-primary">Edit</a>
 
-                                                @can('teacher delete')
-                                                    <button type="button" class="btn btn-danger" onclick="deleteTeacher({{ $teacher->id }})">Delete</button>
+                                                @if(auth()->user()->can('teacher edit'))
+                                                    <a href="{{ route('teacher.edit', ['teacher' => $teacher->id]) }}" class="btn btn-primary">Edit</a>
+                                                @endif
 
-                                                    <form action="{{ route('teacher.destroy', ['teacher' => $teacher->id]) }}" id="delete-form-{{ $teacher->id }}" method="post" style="display: none">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                               @endcan
+                                                    @if(auth()->user()->can('teacher delete'))
+                                                        <button type="button" class="btn btn-danger" onclick="deleteTeacher({{ $teacher->id }})">Delete</button>
+
+                                                        <form action="{{ route('teacher.destroy', ['teacher' => $teacher->id]) }}" id="delete-form-{{ $teacher->id }}" method="post" style="display: none">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    @endif
 
                                             </td>
                                         </tr>

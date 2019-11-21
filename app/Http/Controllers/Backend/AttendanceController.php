@@ -54,15 +54,10 @@ class AttendanceController extends Controller
          return redirect()->route('attendances.index')->with('success', 'Attendance Create Successfully !');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Attendance  $attendance
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Attendance $attendance)
     {
-        //
+        return view('backend.pages.errorPage.404');
     }
 
 

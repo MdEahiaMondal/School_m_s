@@ -15,36 +15,36 @@
 
 
                 @role('admin')
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-barcode"></i>
-                        <span>Administration</span>
-                    </a>
-                    <ul class="sub">
-                        <li class="{{ Request::is('permission*') ? 'active' : '' }}"><a  href="{{ route('permission.index') }}">Manage Permission</a></li>
-                        <li><a href="{{ route('role.index') }}">Manage Role</a></li>
-                    </ul>
-                </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-barcode"></i>
+                            <span>Administration</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="{{ Request::is('permission*') ? 'active' : '' }}"  href="{{ route('permission.index') }}">Manage Permission</a></li>
+                            <li><a  class="{{ Request::is('permission*') ? 'active' : '' }}" href="{{ route('role.index') }}">Manage Role</a></li>
+                        </ul>
+                    </li>
                 @endrole
 
 
-                @can('teacher create')
-                <li class="sub-menu">
-                    <a href="{{ route('teacher.index') }}" class="{{ Request::is('teacher*') ? 'active' : '' }}">
-                        <i class="fa  fa-group"></i>
-                        <span>Teachers</span>
-                    </a>
-                </li>
-                @endcan
+                @if(auth()->user()->hasRole('admin') or auth()->user()->can('teacher create') or auth()->user()->can('teacher edit') or auth()->user()->can('teacher delete') or auth()->user()->can('teacher show') )
+                    <li class="sub-menu">
+                        <a href="{{ route('teacher.index') }}" class="{{ Request::is('teacher*') ? 'active' : '' }}">
+                            <i class="fa  fa-group"></i>
+                            <span>Teachers</span>
+                        </a>
+                    </li>
+                @endif
 
-                @role('admin')
-                <li class="sub-menu">
-                    <a href="{{ route('parent.index') }}" class="{{ Request::is('parent*') ? 'active' : '' }}">
-                        <i class="fa  fa-group"></i>
-                        <span>Parents</span>
-                    </a>
-                </li>
-                @endrole
+                @if(auth()->user()->hasRole('admin') or auth()->user()->can('parent create') or auth()->user()->can('parent edit') or auth()->user()->can('parent delete') or auth()->user()->can('parent show') )
+                    <li class="sub-menu">
+                        <a href="{{ route('parent.index') }}" class="{{ Request::is('parent*') ? 'active' : '' }}">
+                            <i class="fa  fa-group"></i>
+                            <span>Parents</span>
+                        </a>
+                    </li>
+                @endif
 
                 @if(auth()->user()->hasRole('admin') or auth()->user()->can('class create') or auth()->user()->can('class edit') or auth()->user()->can('class delete') or auth()->user()->can('class show') )
                     <li class="sub-menu">

@@ -13,10 +13,14 @@ use Spatie\Permission\Models\Role;
 class TeacherController extends Controller
 {
 
+
     public function __construct()
     {
-        $this->middleware('role:admin|carani');
-        $this->middleware('permission:teacher create|teacher edit')->except('delete');
+        $this->middleware('auth');
+        $this->middleware('permission:teacher show|teacher create|teacher edit|teacher delete', ['only' => ['index','show']]);
+        $this->middleware('permission:teacher create')->only('create');
+        $this->middleware('permission:teacher edit')->only(['edit','update']);
+        $this->middleware('permission:teacher delete')->only('destroy');
     }
 
     public function index()

@@ -16,6 +16,18 @@ class ParntController extends Controller
 {
 
 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:parent show|parent create|parent edit|parent delete', ['only' => ['index','show']]);
+        $this->middleware('permission:parent create')->only('create');
+        $this->middleware('permission:parent edit')->only(['edit','update']);
+        $this->middleware('permission:parent delete')->only('destroy');
+    }
+
+
+
     public function index()
     {
         $parents = Parnt::latest()->get();

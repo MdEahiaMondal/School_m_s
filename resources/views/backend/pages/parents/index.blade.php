@@ -31,11 +31,13 @@
                         <div class="panel-body">
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('parent.create') }}">
-                                            Add New <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
+                                    @if(auth()->user()->can('parent create'))
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="{{ route('parent.create') }}">
+                                                Add New <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    @endif
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                         </button>
@@ -79,13 +81,18 @@
                                             </td>
                                             <td>{{ $parent->address }}</td>
                                             <td>
-                                                <a href="{{ route('parent.edit', ['parent' => $parent->id]) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteParent({{ $parent->id }})">Delete</button>
+                                                @if(auth()->user()->can('parent edit'))
+                                                    <a href="{{ route('parent.edit', ['parent' => $parent->id]) }}" class="btn btn-primary">Edit</a>
+                                                @endif
 
-                                                <form action="{{ route('parent.destroy', ['parent' => $parent->id]) }}" id="delete-form-{{ $parent->id }}" method="post" style="display: none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                @if(auth()->user()->can('parent delete'))
+                                                    <button type="button" class="btn btn-danger" onclick="deleteParent({{ $parent->id }})">Delete</button>
+
+                                                    <form action="{{ route('parent.destroy', ['parent' => $parent->id]) }}" id="delete-form-{{ $parent->id }}" method="post" style="display: none">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @endif
 
                                             </td>
                                         </tr>
