@@ -46,14 +46,14 @@
                 </li>
                 @endrole
 
-                @role('admin')
-                <li class="sub-menu">
-                    <a href="{{ route('all_classes.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
-                        <i class="fa fa-shield"></i>
-                        <span>Class</span>
-                    </a>
-                </li>
-                @endrole
+                @if(auth()->user()->hasRole('admin') or auth()->user()->can('class create') or auth()->user()->can('class edit') or auth()->user()->can('class delete') or auth()->user()->can('class show') )
+                    <li class="sub-menu">
+                        <a href="{{ route('all_classes.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
+                            <i class="fa fa-shield"></i>
+                            <span>Class</span>
+                        </a>
+                    </li>
+                @endif
 
                 @if(auth()->user()->hasRole('admin') or auth()->user()->can('student create') or auth()->user()->can('student edit') or auth()->user()->can('student delete') or auth()->user()->can('student show') )
                 <li class="sub-menu">

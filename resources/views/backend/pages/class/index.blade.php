@@ -31,11 +31,13 @@
                         <div class="panel-body">
                             <div class="adv-table editable-table ">
                                 <div class="clearfix">
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="{{ route('all_classes.create') }}">
-                                            Add New <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
+                                    @if(auth()->user()->can('class create'))
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="{{ route('all_classes.create') }}">
+                                                Add New <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    @endif
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                                         </button>
@@ -63,13 +65,19 @@
                                             <td>{{ $class->name }}</td>
                                             <td>{{ $class->note }}</td>
                                             <td>
-                                                <a href="{{ route('all_classes.edit', $class->id ) }}" class="btn btn-primary">Edit</a>
-                                                <button type="button" class="btn btn-danger" onclick="deleteClass({{ $class->id }})">Delete</button>
 
-                                                <form action="{{ route('all_classes.destroy', ['all_class' => $class->id]) }}" id="delete-form-{{ $class->id }}" method="post" style="display: none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                @if(auth()->user()->can('class edit'))
+                                                    <a href="{{ route('all_classes.edit', $class->id ) }}" class="btn btn-primary">Edit</a>
+                                                @endif
+
+                                                @if(auth()->user()->can('class delete'))
+                                                    <button type="button" class="btn btn-danger" onclick="deleteClass({{ $class->id }})">Delete</button>
+
+                                                    <form action="{{ route('all_classes.destroy', ['all_class' => $class->id]) }}" id="delete-form-{{ $class->id }}" method="post" style="display: none">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                               @endif
 
                                             </td>
                                         </tr>

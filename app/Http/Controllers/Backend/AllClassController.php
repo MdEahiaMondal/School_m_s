@@ -10,6 +10,17 @@ class AllClassController extends Controller
 {
 
 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:class show|class create|class edit|class delete', ['only' => ['index','show']]);
+        $this->middleware('permission:class create')->only('create');
+        $this->middleware('permission:class edit')->only(['edit','update']);
+        $this->middleware('permission:class delete')->only('destroy');
+    }
+
+
     public function index()
     {
         $classes = AllClass::latest()->get();
@@ -46,7 +57,7 @@ class AllClassController extends Controller
      */
     public function show(AllClass $allClass)
     {
-        //
+        return view('backend.pages.errorPage.404');
     }
 
 
