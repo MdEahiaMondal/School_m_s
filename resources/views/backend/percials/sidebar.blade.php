@@ -55,25 +55,24 @@
                 </li>
                 @endrole
 
-                @role('admin')
+                @if(auth()->user()->hasRole('admin') or auth()->user()->can('student create') or auth()->user()->can('student edit') or auth()->user()->can('student delete') or auth()->user()->can('student show') )
                 <li class="sub-menu">
                     <a href="{{ route('students.index') }}" class="{{ Request::is('students*') ? 'active' : '' }}">
                         <i class="fa fa-group"></i>
                         <span>Students</span>
                     </a>
                 </li>
-                @endrole
+                @endif
 
 
-                @role('teacher|admin')
-                <li class="sub-menu">
-                    <a href="{{ route('attendances.index') }}" class="{{ Request::is('attendances*') ? 'active' : '' }}">
-                        <i class="fa  fa-credit-card"></i>
-                        <span>Attandance</span>
-                    </a>
-                </li>
-                @endrole
-
+                    @if(auth()->user()->hasRole('admin') or auth()->user()->can('attendance create') or auth()->user()->can('attendance edit') or auth()->user()->can('attendance delete') or auth()->user()->can('attendance show') )
+                        <li class="sub-menu">
+                            <a href="{{ route('attendances.index') }}" class="{{ Request::is('attendances*') ? 'active' : '' }}">
+                                <i class="fa  fa-credit-card"></i>
+                                <span>Attandance</span>
+                            </a>
+                        </li>
+                    @endif
             </ul>
         </div>
         <!-- sidebar menu end-->

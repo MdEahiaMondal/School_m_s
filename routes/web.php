@@ -28,27 +28,34 @@ Route::get('/', function () {
 });
 
 
+Route::group(['middleware' => ['auth']], function() {
+
+
 // admistration
-Route::resource('/admin', 'Backend\AdminController');
-Route::resource('/permission', 'Backend\PermissionController');
-Route::resource('/role', 'Backend\RoleController');
+    Route::resource('/admin', 'Backend\AdminController');
+    Route::resource('/permission', 'Backend\PermissionController');
+    Route::resource('/role', 'Backend\RoleController');
 
 
 
 //teacher
-Route::resource('teacher', 'Backend\TeacherController');
+    Route::resource('teacher', 'Backend\TeacherController');
 
 
 //Parents
-Route::resource('parent', 'Backend\ParntController')->middleware('role:admin');
+    Route::resource('parent', 'Backend\ParntController');
 
 
 //Students
-Route::resource('students', 'Backend\StudentController')->middleware('role:admin');
+    Route::resource('students', 'Backend\StudentController');
 
 //Class
-Route::resource('all_classes', 'Backend\AllClassController')->middleware('role:admin');
+    Route::resource('all_classes', 'Backend\AllClassController');
 
 
 //Attendance
-Route::resource('attendances', 'Backend\AttendanceController');
+    Route::resource('attendances', 'Backend\AttendanceController');
+
+
+});
+

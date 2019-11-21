@@ -34,6 +34,8 @@ class UsersTableSeeder extends Seeder
             'model_id' => $user_id,
         ]);
 
+
+
        DB::table('teachers')->insert([
             'user_id' => $user_id,
             'phone' => '01521414629',

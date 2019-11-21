@@ -19,7 +19,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Student Attendance Forms
+                            Student Attendance Edit Forms
                         </header>
                         <div class="panel-body">
 
@@ -95,7 +95,7 @@
 
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
-                                            <button type="submit" class="btn btn-primary">Create</button>
+                                            <button type="submit" class="btn btn-primary">Udate</button>
                                             <button type="reset" class="btn btn-danger">Reset</button>
                                             <a href="{{ route('attendances.index') }}" class="btn btn-default">Back</a>
                                         </div>
