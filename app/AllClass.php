@@ -17,7 +17,7 @@ class AllClass extends Model
 
     public function classGroup()
     {
-        return $this->hasMany(ClassGroup::class);
+        return $this->belongsToMany(ClassGroup::class);
     }
 
 }

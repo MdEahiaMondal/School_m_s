@@ -8,14 +8,12 @@ use Illuminate\Routing\Controller;
 
 class ClassGroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function index()
     {
-        //
+        $class_groups = ClassGroup::latest()->get();
+        return view('backend.pages.class_group.index', compact('class_groups'));
     }
 
     /**

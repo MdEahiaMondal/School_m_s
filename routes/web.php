@@ -37,6 +37,15 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 
+    //Class group
+    Route::resource('class_groups', 'Backend\ClassGroupController');
+
+    // class
+    Route::resource('all_classes', 'Backend\AllClassController');
+
+
+
+
 //teacher
     Route::resource('teacher', 'Backend\TeacherController');
 
@@ -47,9 +56,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 //Students
     Route::resource('students', 'Backend\StudentController');
-
-//Class
-    Route::resource('all_classes', 'Backend\AllClassController');
 
 
 //Attendance

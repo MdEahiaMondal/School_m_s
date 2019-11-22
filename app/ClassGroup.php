@@ -12,7 +12,7 @@ class ClassGroup extends Model
 
    public function Class()
    {
-       return $this->belongsTo(AllClass::class);
+       return $this->belongsToMany(AllClass::class);
    }
 
 }

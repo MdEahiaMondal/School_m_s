@@ -29,6 +29,34 @@
                 @endrole
 
 
+                @role('admin')
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-barcode"></i>
+                            <span>Class Manage</span>
+                        </a>
+                        <ul class="sub">
+                            <li class="sub-menu">
+                                <a href="{{ route('class_groups.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
+                                    <i class="fa fa-shield"></i>
+                                    <span>Class Group</span>
+                                </a>
+                            </li>
+
+                            @if(auth()->user()->hasRole('admin') or auth()->user()->can('class create') or auth()->user()->can('class edit') or auth()->user()->can('class delete') or auth()->user()->can('class show') )
+                                <li class="sub-menu">
+                                    <a href="{{ route('all_classes.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
+                                        <i class="fa fa-shield"></i>
+                                        <span>Class</span>
+                                    </a>
+                                </li>
+                            @endif
+
+                        </ul>
+                    </li>
+                @endrole
+
+
                 @if(auth()->user()->hasRole('admin') or auth()->user()->can('teacher create') or auth()->user()->can('teacher edit') or auth()->user()->can('teacher delete') or auth()->user()->can('teacher show') )
                     <li class="sub-menu">
                         <a href="{{ route('teacher.index') }}" class="{{ Request::is('teacher*') ? 'active' : '' }}">
@@ -47,14 +75,7 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->hasRole('admin') or auth()->user()->can('class create') or auth()->user()->can('class edit') or auth()->user()->can('class delete') or auth()->user()->can('class show') )
-                    <li class="sub-menu">
-                        <a href="{{ route('all_classes.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
-                            <i class="fa fa-shield"></i>
-                            <span>Class</span>
-                        </a>
-                    </li>
-                @endif
+
 
                 @if(auth()->user()->hasRole('admin') or auth()->user()->can('student create') or auth()->user()->can('student edit') or auth()->user()->can('student delete') or auth()->user()->can('student show') )
                 <li class="sub-menu">
