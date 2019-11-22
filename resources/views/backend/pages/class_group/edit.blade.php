@@ -1,6 +1,6 @@
 @extends('backend.master.master')
 
-@section('title', 'Edit')
+@section('title', 'Edit Class Group')
 
 @push('css')
 
@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Class Edit
+                             Class Group Edit
                             <span class="tools pull-right">
                                 <a class="fa fa-chevron-down" href="javascript:;"></a>
                                 <a class="fa fa-cog" href="javascript:;"></a>
@@ -28,39 +28,37 @@
 
                             @include('backend.message.message')
 
-
                             <div class="form">
-                                <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('all_classes.update', $allClass->id) }}">
+                                <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('class_groups.update',$classGroup->id) }}">
                                     @csrf
                                     @method('PATCH')
                                     <div class="form-group ">
-                                        <label for="name" class="control-label col-lg-3">Name</label>
+                                        <label for="class_group_name" class="control-label col-lg-3">Class Group Name</label>
                                         <div class="col-lg-6">
-                                            <input class=" form-control" value="{{ $allClass->name }}" id="name" name="name" type="text" />
-                                            @error('name')
-                                                <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group ">
-                                        <label for="note" class="control-label col-lg-3">Note</label>
-                                        <div class="col-lg-6">
-                                            <input class=" form-control" value="{{ $allClass->note }}" id="note" name="note" type="text" />
-                                            @error('note')
+                                            <input class=" form-control" value="{{ $classGroup->class_group_name }}" id="class_group_name" name="class_group_name" type="text" />
+                                            @error('class_group_name')
                                             <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">Status</label>
+                                        <div class="col-sm-8 icheck ">
+                                            <div class="flat-green single-row">
+                                                <div class="radio ">
+                                                    <input {{ $classGroup->status == 1 ? 'checked' : '' }} type="checkbox" name="status" value="1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <div class="col-lg-offset-3 col-lg-6">
-                                            <button class="btn btn-primary" type="submit">Update</button>
-                                            <a href="{{ route('all_classes.index') }}" class="btn btn-default">Back</a>
+                                            <button class="btn btn-primary" type="submit">UPDATE</button>
+                                            <a href="{{ route('class_groups.index') }}" class="btn btn-default">BACK</a>
                                         </div>
                                     </div>
                                 </form>
@@ -78,8 +76,8 @@
 
 @push('script')
 
+
     <script src="{{ asset('backend/js/iCheck/jquery.icheck.js') }}"></script>
 
     <script src="{{ asset('backend/js/icheck-init.js') }}"></script>
-
 @endpush

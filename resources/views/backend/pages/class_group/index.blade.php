@@ -72,9 +72,9 @@
                                             </td>
                                             <td>
                                              <a href="{{ route('class_groups.edit', $class_group->id ) }}" class="btn btn-primary">Edit</a>
-                                              <button type="button" class="btn btn-danger" onclick="deleteClass({{ $class_group->id }})">Delete</button>
+                                              <button type="button" class="btn btn-danger" onclick="deleteClass_groups({{ $class_group->id }})">Delete</button>
 
-                                              <form action="{{ route('all_classes.destroy', ['all_class' => $class_group->id]) }}" id="delete-form-{{ $class_group->id }}" method="post" style="display: none">
+                                              <form action="{{ route('class_groups.destroy', $class_group->id) }}" id="delete-form-{{ $class_group->id }}" method="post" style="display: none">
                                                         @csrf
                                                         @method('DELETE')
                                               </form>
@@ -112,7 +112,7 @@
 
     {{--// for tag delete--}}
     <script>
-        function deleteClass(id) {
+        function deleteClass_groups(id) {
 
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {

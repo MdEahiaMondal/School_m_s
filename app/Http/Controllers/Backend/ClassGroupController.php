@@ -29,7 +29,7 @@ class ClassGroupController extends Controller
     {
 
        $request->validate([
-           'class_group_name' => 'required|string|max:50',
+           'class_group_name' => 'required|string|max:50|unique:class_groups,class_group_name,',
            'status' => 'nullable|numeric'
        ]);
 
@@ -39,48 +39,39 @@ class ClassGroupController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ClassGroup  $classGroup
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(ClassGroup $classGroup)
     {
-        //
+        return view('backend.pages.errorPage.404');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ClassGroup  $classGroup
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function edit(ClassGroup $classGroup)
     {
-        //
+       return view('backend.pages.class_group.edit', compact('classGroup'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ClassGroup  $classGroup
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, ClassGroup $classGroup)
     {
-        //
+        $request->validate([
+            'class_group_name' => 'required|string|max:50|unique:class_groups,class_group_name,'.$classGroup->id,
+            'status' => 'nullable|numeric'
+        ]);
+
+
+        $classGroup->update($request->all());
+        return redirect()->route('class_groups.index')->with('success', 'Class group Updated Successfully');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ClassGroup  $classGroup
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function destroy(ClassGroup $classGroup)
     {
-        //
+        $classGroup->delete();
+        return redirect()->route('class_groups.index')->with('success', 'Class group Deleted Successfully');
+
     }
 }
