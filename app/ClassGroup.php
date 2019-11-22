@@ -10,9 +10,9 @@ class ClassGroup extends Model
 
 
 
-   public function Class()
+   public function Classes()
    {
-       return $this->belongsToMany(AllClass::class);
+       return $this->belongsToMany(AllClass::class)->withTimestamps();
    }
 
 }

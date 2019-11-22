@@ -54,6 +54,7 @@
                                     <tr>
                                         <th class="text-center">Si</th>
                                         <th class="text-center">Name</th>
+                                        <th class="text-center">Class Group</th>
                                         <th class="text-center">Note</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -63,6 +64,11 @@
                                         <tr class="">
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $class->name }}</td>
+                                            <td>
+                                                @foreach($class->classGroups as $group)
+                                                    <span class="badge label-primary">{{ $group->class_group_name }}</span>
+                                                @endforeach
+                                            </td>
                                             <td>{{ $class->note }}</td>
                                             <td>
 

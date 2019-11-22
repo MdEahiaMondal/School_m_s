@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\AllClass;
+use App\ClassGroup;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -34,15 +35,22 @@ class AllClassController extends Controller
      */
     public function create()
     {
-        return  view('backend.pages.class.create');
+        $classGroups = ClassGroup::where('status', 1)->get();
+        return  view('backend.pages.class.create', compact('classGroups'));
     }
 
 
     public function store(Request $request)
     {
+
         $request->validate($this->ClassCreateRules(), $this->setClassErrorMessage());
 
-        AllClass::create($request->all());
+        $class =  AllClass::create([
+            'name' => $request->name,
+            'note' => $request->note,
+        ]);
+
+        $class->classGroups()->attach($request->class_group_id);
 
         return redirect()->route('all_classes.index')->with('success', 'Class Create Successfully !');
     }
@@ -88,7 +96,8 @@ class AllClassController extends Controller
     {
         return [
             'name' => 'required|unique:all_classes,name',
-            'note' => 'string|nullable'
+            'class_group_id' => 'nullable',
+            'note' => 'string|nullable',
         ];
     }
 
@@ -96,7 +105,8 @@ class AllClassController extends Controller
     {
         return [
             'name' => 'required|unique:all_classes,name,'.$allClass->id,
-            'note' => 'string|nullable'
+            'class_group_id' => 'nullable',
+            'note' => 'string|nullable',
         ];
     }
 

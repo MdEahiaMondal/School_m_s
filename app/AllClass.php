@@ -15,9 +15,9 @@ class AllClass extends Model
         return $this->hasMany(User::class);
     }
 
-    public function classGroup()
+    public function classGroups()
     {
-        return $this->belongsToMany(ClassGroup::class);
+        return $this->belongsToMany(ClassGroup::class)->withTimestamps();
     }
 
 }

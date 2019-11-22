@@ -43,6 +43,27 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Permission</label>
+                                            <div class="col-sm-6 icheck ">
+                                                <div class="flat-green single-row">
+                                                    @foreach($classGroups as $classGroup)
+                                                        <div class="radio ">
+                                                            <input type="checkbox" name="class_group_id[]" value="{{ $classGroup->id }}">
+                                                            <label>{{ $classGroup->class_group_name }}</label>
+                                                        </div>
+                                                    @endforeach
+
+                                                        @error('class_group_id')
+                                                        <span class="text-danger" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                        @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group ">
                                             <label for="note" class="control-label col-lg-3">Note</label>
                                             <div class="col-lg-6">
