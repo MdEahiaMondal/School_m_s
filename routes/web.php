@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 //Students
     Route::resource('students', 'Backend\StudentController');
+    Route::POST('getClassGroup', 'Backend\StudentController@getClassGroup')->name('get.allClass_Group');
 
 
 //Attendance

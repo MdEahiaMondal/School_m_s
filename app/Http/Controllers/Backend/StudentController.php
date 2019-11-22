@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\AllClass;
+use App\ClassGroup;
 use App\Http\Requests\Student\StudentRequest;
 use App\Parnt;
 use App\Student;
@@ -97,4 +98,28 @@ class StudentController extends Controller
       $student->user()->delete();
         return redirect()->route('students.index')->with('success', 'Student Updated Successfully !');
     }
+
+
+
+    public function getClassGroup(Request $request)
+    {
+        $Class_id = $request->get('options_id');
+
+
+        $allClss = AllClass::where('id', $Class_id)->first();
+
+
+        $allClssGroup = $allClss->classGroups;
+
+        $output = '';
+        foreach ($allClssGroup as $group)
+        {
+
+            $output .= '<option value="'.$group->id.'">'.$group->class_group_name.'</option>';
+        }
+
+        return $output;
+
+    }
+
 }

@@ -25,6 +25,42 @@
                             <div class="position-center">
                                 <form class="form-horizontal" role="form" method="post" action="{{ route('students.store') }}">
                                     @csrf
+
+
+                                    <div class="form-group">
+                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
+                                        <div class="col-lg-10">
+                                            <select name="class_id" id="class" class="form-control m-bot15">
+                                                <option value="">===>Choose Class===></option>
+                                                @foreach($classes as $class)
+                                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('class_id')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
+                                        <div class="col-lg-10">
+                                            <select name="group_id" id="classGroup" class="form-control m-bot15">
+                                                <option value="" disable="true" selected="true">=== Select Class Group ===</option>
+                                            </select>
+                                            @error('class_id')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="form-group">
                                         <label for="name" class="col-lg-2 col-sm-2 control-label">Name <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                         <div class="col-lg-10">
@@ -103,22 +139,6 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
-                                        <div class="col-lg-10">
-                                            <select name="class_id" class="form-control m-bot15">
-                                                <option value="">===>Choose Class===></option>
-                                                @foreach($classes as $class)
-                                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('class_id')
-                                            <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="roll_number" class="col-lg-2 col-sm-2 control-label">Roll No <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
@@ -212,5 +232,38 @@
     <script src="{{ asset('backend/js/iCheck/jquery.icheck.js') }}"></script>
 
     <script src="{{ asset('backend/js/icheck-init.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#class").change(function () { // al select field name
+                if($(this).val() != ''){// if there is value true or false
+                    var options_id = $(this).val();// option value's id
+                    var _token = $('input[name="_token"]').val();
+                    var selectFieldNameOrId = $(this).attr('id');// select field name or id
+
+                    $.ajax({
+                        url: "{{ route('get.allClass_Group') }}",
+                        method: "POST",
+                        data: {
+                            options_id: options_id,
+                            selectFieldNameOrId: selectFieldNameOrId,
+                            _token: _token,
+                        },
+                        success: function (result) {
+
+
+                            if(selectFieldNameOrId == 'class'){
+                                $("#classGroup").html(result)
+                            }
+
+                        }
+                    });
+                }
+            })
+        })
+
+    </script>
+
 
 @endpush
