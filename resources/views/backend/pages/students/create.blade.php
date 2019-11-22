@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                         <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                         <div class="col-lg-10">
-                                            <select name="class_id" id="class" class="form-control m-bot15">
+                                            <select name="all_class_id" id="class" class="form-control m-bot15">
                                                 <option value="">===>Choose Class===></option>
                                                 @foreach($classes as $class)
                                                     <option value="{{ $class->id }}">{{ $class->name }}</option>
@@ -48,7 +48,7 @@
                                     <div class="form-group">
                                         <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                         <div class="col-lg-10">
-                                            <select name="group_id" id="classGroup" class="form-control m-bot15">
+                                            <select name="class_group_id" id="classGroup" class="form-control m-bot15">
                                                 <option value="" disable="true" selected="true">=== Select Class Group ===</option>
                                             </select>
                                             @error('class_id')
@@ -112,7 +112,7 @@
                                     <div class="form-group">
                                         <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Parent <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                         <div class="col-lg-10">
-                                            <select name="parent_id" class="form-control m-bot15">
+                                            <select name="parnt_id" class="form-control m-bot15">
                                                 <option value="">===>Choose Parents===></option>
                                                 @foreach($parents as $parent)
                                                     <option value="{{ $parent->id }}">{{ $parent->user->name }}</option>
@@ -184,7 +184,7 @@
                                     <div class="form-group">
                                         <label for="date_of_birth" class="col-lg-2 col-sm-2 control-label">Birth day </label>
                                         <div class="col-lg-10">
-                                            <input type="date" value="{{ old('date_of_birth') }}" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Birth day">
+                                            <input type="date" value="<?php echo date('Y-m-d'); ?>" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Birth day">
                                             @error('date_of_birth')
                                             <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>

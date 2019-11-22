@@ -17,8 +17,9 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('parent_id');
-            $table->integer('class_id');
+            $table->unsignedBigInteger('parnt_id');
+            $table->unsignedBigInteger('all_class_id');
+            $table->unsignedBigInteger('class_group_id');
             $table->string('roll_number')->unique();
             $table->string('phone')->unique();
             $table->string('parent_phone');
