@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassGroup extends Model
 {
-   protected $fillable = ['class_id', 'status'];
+   protected $fillable = ['class_group_name', 'status'];
 
 
 

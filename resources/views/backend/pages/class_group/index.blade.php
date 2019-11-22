@@ -59,25 +59,25 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($class_groups as $key => $class)
+                                    @foreach($class_groups as $key => $class_group)
                                         <tr class="">
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $class_group->name }}</td>
-                                            <td>{{ $class->note }}</td>
+                                            <td>{{ $class_group->class_group_name }}</td>
                                             <td>
-
-                                                @if(auth()->user()->can('class edit'))
-                                                    <a href="{{ route('all_classes.edit', $class->id ) }}" class="btn btn-primary">Edit</a>
+                                                @if($class_group->status == 1)
+                                                    <span class="badge label-success">Active</span>
+                                                @else
+                                                    <span class="badge label-danger">Unactive</span>
                                                 @endif
+                                            </td>
+                                            <td>
+                                             <a href="{{ route('class_groups.edit', $class_group->id ) }}" class="btn btn-primary">Edit</a>
+                                              <button type="button" class="btn btn-danger" onclick="deleteClass({{ $class_group->id }})">Delete</button>
 
-                                                @if(auth()->user()->can('class delete'))
-                                                    <button type="button" class="btn btn-danger" onclick="deleteClass({{ $class->id }})">Delete</button>
-
-                                                    <form action="{{ route('all_classes.destroy', ['all_class' => $class->id]) }}" id="delete-form-{{ $class->id }}" method="post" style="display: none">
+                                              <form action="{{ route('all_classes.destroy', ['all_class' => $class_group->id]) }}" id="delete-form-{{ $class_group->id }}" method="post" style="display: none">
                                                         @csrf
                                                         @method('DELETE')
-                                                    </form>
-                                               @endif
+                                              </form>
 
                                             </td>
                                         </tr>

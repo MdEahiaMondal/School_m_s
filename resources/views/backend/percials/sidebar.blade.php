@@ -37,7 +37,7 @@
                         </a>
                         <ul class="sub">
                             <li class="sub-menu">
-                                <a href="{{ route('class_groups.index') }}" class="{{ Request::is('class*') ? 'active' : '' }}">
+                                <a href="{{ route('class_groups.index') }}" class="{{ Request::is('class_groups*') ? 'active' : '' }}">
                                     <i class="fa fa-shield"></i>
                                     <span>Class Group</span>
                                 </a>

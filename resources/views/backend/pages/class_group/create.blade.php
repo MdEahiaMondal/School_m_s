@@ -32,10 +32,10 @@
                                     <form class="cmxform form-horizontal " id="signupForm" method="post" action="{{ route('class_groups.store') }}">
                                         @csrf
                                         <div class="form-group ">
-                                            <label for="group_name" class="control-label col-lg-3">Class Group Name</label>
+                                            <label for="class_group_name" class="control-label col-lg-3">Class Group Name</label>
                                             <div class="col-lg-6">
-                                                <input class=" form-control" id="group_name" name="group_name" type="text" />
-                                                @error('group_name')
+                                                <input class=" form-control" id="class_group_name" name="class_group_name" type="text" />
+                                                @error('class_group_name')
                                                     <span class="text-danger" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -43,15 +43,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group ">
-                                            <label for="status" class="control-label col-lg-3">Status</label>
-                                            <div class="col-lg-6">
-                                                <input class=" form-control" id="status" name="status" type="checkbox" />
-                                                @error('status')
-                                                <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Status</label>
+                                            <div class="col-sm-8 icheck ">
+                                                <div class="flat-green single-row">
+                                                    <div class="radio ">
+                                                        <input type="checkbox" name="status" value="1">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 

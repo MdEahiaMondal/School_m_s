@@ -15,8 +15,8 @@ class CreateClassGroupsTable extends Migration
     {
         Schema::create('class_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('group_name');
-            $table->boolean('status')->default('1');
+            $table->string('class_group_name');
+            $table->boolean('status')->default('0');
             $table->timestamps();
         });
     }

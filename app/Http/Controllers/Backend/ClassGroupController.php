@@ -16,25 +16,27 @@ class ClassGroupController extends Controller
         return view('backend.pages.class_group.index', compact('class_groups'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function create()
     {
-        //
+        return view('backend.pages.class_group.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function store(Request $request)
     {
-        //
+
+       $request->validate([
+           'class_group_name' => 'required|string|max:50',
+           'status' => 'nullable|numeric'
+       ]);
+
+       ClassGroup::create($request->all());
+
+       return redirect()->route('class_groups.index')->with('success', 'Class group Create Successfully');
+
     }
 
     /**
