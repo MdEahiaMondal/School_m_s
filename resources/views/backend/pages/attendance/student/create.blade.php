@@ -28,7 +28,7 @@
                             <div class="position-center">
                                 <form class="form-horizontal" role="form" method="post" action="{{ route('attendances.store') }}">
                                     @csrf
-                                    <div class="form-group">
+                                   {{-- <div class="form-group">
                                         <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Student<sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                         <div class="col-lg-10">
                                             <select name="student_id" class="form-control m-bot15">
@@ -44,7 +44,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div>--}}
 
 
                                     <div class="form-group">

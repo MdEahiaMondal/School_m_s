@@ -22,6 +22,9 @@
                             Student Forms
                         </header>
                         <div class="panel-body">
+
+                            @include('backend.message.message')
+
                             <div class="position-center">
                                 <form class="form-horizontal" role="form" method="post" action="{{ route('students.store') }}">
                                     @csrf
@@ -36,7 +39,7 @@
                                                     <option value="{{ $class->id }}">{{ $class->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('class_id')
+                                            @error('all_class_id')
                                             <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -46,12 +49,12 @@
 
 
                                     <div class="form-group">
-                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
+                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Class Group <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
                                         <div class="col-lg-10">
                                             <select name="class_group_id" id="classGroup" class="form-control m-bot15">
                                                 <option value="" disable="true" selected="true">=== Select Class Group ===</option>
                                             </select>
-                                            @error('class_id')
+                                            @error('class_group_id')
                                             <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -118,19 +121,6 @@
                                         <div class="col-lg-10">
                                             <input type="text" value="{{ old('phone') }}" name="phone" class="form-control" id="phone" placeholder="Phone">
                                             @error('phone')
-                                            <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="roll_number" class="col-lg-2 col-sm-2 control-label">Roll No <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
-                                        <div class="col-lg-10">
-                                            <input type="text" value="{{ old('roll_number') }}" name="roll_number" class="form-control" id="roll_number" placeholder="Class Roll Number">
-                                            @error('roll_number')
                                             <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

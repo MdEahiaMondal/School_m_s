@@ -46,6 +46,14 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
 
+       $roll = $request['roll_number'] = rand(1, 999999999);
+
+        $error = Student::where('roll_number', $roll)->first();
+        if (isset($error))
+        {
+            return back()->with('error', 'The Role number Fillup Your Company');
+        }
+
 
        $user = User::create([
            'name' => $request->name,

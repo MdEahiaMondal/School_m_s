@@ -41,7 +41,6 @@ class StudentRequest extends FormRequest
            $rules['password'] ='required|max:15';
            $rules['email'] = 'required|unique:users,email';
            $rules['phone'] = 'required|unique:students,phone';
-           $rules['roll_number'] = 'required|unique:students,roll_number';
        }
 
        if (request()->isMethod('put') or request()->isMethod('PATCH'))
@@ -49,7 +48,6 @@ class StudentRequest extends FormRequest
            $rules['password'] ='nullable|max:15';
            $rules['email'] = 'required|unique:users,email,'.$id;
            $rules['phone'] = 'required|unique:students,phone,'.$student_id;
-           $rules['roll_number'] = 'required|unique:students,roll_number,'.$student_id;
        }
 
        return  $rules;

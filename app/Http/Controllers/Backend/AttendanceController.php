@@ -34,7 +34,7 @@ class AttendanceController extends Controller
             $attendances = Attendance::where('teacher_id', auth()->user()->id)->latest()->get();
         }
 
-        return view('backend.pages.attendance.index', compact('attendances'));
+        return view('backend.pages.attendance.student.index', compact('attendances'));
     }
 
 
@@ -42,7 +42,7 @@ class AttendanceController extends Controller
     {
         $students = Student::latest()->get();
         $classes = AllClass::latest()->get();
-        return view('backend.pages.attendance.create', compact('students', 'classes'));
+        return view('backend.pages.attendance.student.create', compact('students', 'classes'));
     }
 
 
@@ -70,7 +70,7 @@ class AttendanceController extends Controller
 
          Attendance::create($request->all());
 
-         return redirect()->route('attendances.index')->with('success', 'Attendance Create Successfully !');
+         return redirect()->route('attendances.student.index')->with('success', 'Attendance Create Successfully !');
     }
 
 
@@ -85,7 +85,7 @@ class AttendanceController extends Controller
     {
         $students = Student::latest()->get();
         $classes = AllClass::latest()->get();
-        return view('backend.pages.attendance.edit', compact('attendance', 'students', 'classes'));
+        return view('backend.pages.attendance.student.edit', compact('attendance', 'students', 'classes'));
     }
 
 
@@ -113,7 +113,7 @@ class AttendanceController extends Controller
 
         $attendance->update($request->all());
 
-        return redirect()->route('attendances.index')->with('success', 'Attendance Updated Successfully !');
+        return redirect()->route('attendances.student.index')->with('success', 'Attendance Updated Successfully !');
 
     }
 
@@ -121,7 +121,7 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
        $attendance->delete();
-        return redirect()->route('attendances.index')->with('success', 'Attendance Deleted Successfully !');
+        return redirect()->route('attendances.student.index')->with('success', 'Attendance Deleted Successfully !');
     }
 
     private function AttendanceStoreValidator()
