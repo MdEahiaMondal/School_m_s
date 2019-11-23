@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\AllClass;
 use App\Attendance;
+use App\ClassGroup;
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -142,5 +144,47 @@ class AttendanceController extends Controller
             'class_id.required' => 'Class field Required',
         ];
     }
+
+
+    public function GroupWiseStudent(Request $request)
+    {
+
+       $class_Group_wise_students= Student::where(['all_class_id' => $request->Class_id, 'class_group_id'=>$request->class_Group_id])->get();
+
+        $attendances = Attendance::where(['class_id' =>$request->Class_id ,'attendance_date' => today()])->get();
+
+       return view('backend.pages.attendance.student.groupStudent', compact('class_Group_wise_students','attendances'));
+    }
+
+
+    public function StudentPresent(Request $request)
+    {
+
+
+        $check = Attendance::where(['class_id' =>$request->class_id ,'student_id' => $request->student_id, 'attendance_date' => today()])->first();
+
+        $request['attendance_date'] = date('Y-m-d');
+        $request['teacher_id'] = auth()->user()->id;
+
+        if ($check){
+            if ($check->attendance_status == 1)
+            {
+                $check->attendance_status = 0;
+                $check->save();
+
+            }else if($check->attendance_status == 0){
+                $check->attendance_status = 1;
+                $check->save();
+            }
+
+        }else{
+            $request['attendance_status'] = 1;
+            Attendance::create($request->all());
+        }
+
+        return response()->json(['success'=>'present done']);
+    }
+
+
 
 }

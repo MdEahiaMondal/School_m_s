@@ -121,10 +121,9 @@ class StudentController extends Controller
 
         $allClssGroup = $allClss->classGroups;
 
-        $output = '';
+        $output = '<option>==>Choose Class Group==></option>';
         foreach ($allClssGroup as $group)
         {
-
             $output .= '<option value="'.$group->id.'">'.$group->class_group_name.'</option>';
         }
 
