@@ -29,7 +29,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = Student::with('Class')->latest()->get();
+        $students = Student::latest()->get();
+
        return view('backend.pages.students.index', compact('students'));
     }
 
@@ -44,6 +45,8 @@ class StudentController extends Controller
 
     public function store(StudentRequest $request)
     {
+
+
        $user = User::create([
            'name' => $request->name,
            'email' => $request->email,

@@ -27,8 +27,7 @@ class StudentRequest extends FormRequest
         $student_id = isset($this->student) ? $this->student->id : null;
        $rules = [
            'name' => 'required|string|max:100',
-            'parent_id' => 'required',
-            'parent_phone' => 'required',
+            'parnt_id' => 'required',
             'all_class_id' => 'required',
             'class_group_id' => 'required',
             'age' => 'required',

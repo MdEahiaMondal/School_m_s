@@ -17,12 +17,11 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('parnt_id');
-            $table->unsignedBigInteger('all_class_id');
-            $table->unsignedBigInteger('class_group_id');
+            $table->bigInteger('all_class_id');
+            $table->bigInteger('class_group_id');
+            $table->bigInteger('parnt_id');
             $table->string('roll_number')->unique();
             $table->string('phone')->unique();
-            $table->string('parent_phone');
             $table->string('age');
             $table->string('gender');
             $table->date('date_of_birth')->nullable();

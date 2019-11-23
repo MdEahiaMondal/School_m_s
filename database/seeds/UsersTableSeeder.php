@@ -26,6 +26,8 @@ class UsersTableSeeder extends Seeder
   $role = DB::table('roles')->insert([
             'name' => 'admin',
             'guard_name' => 'web',
+              'created_at' => Carbon::now(),
+              'updated_at' => Carbon::now(),
         ]);
 
   DB::table('model_has_roles')->insert([

@@ -58,6 +58,7 @@
                                             <th class="text-center">Phone</th>
                                             <th class="text-center">Roll</th>
                                             <th class="text-center">Class</th>
+                                            <th class="text-center">Class Group</th>
                                             <th class="text-center">Role</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -70,7 +71,8 @@
                                             <td>{{ $student->user->email }}</td>
                                             <td>{{ $student->phone }}</td>
                                             <td>{{ $student->roll_number }}</td>
-                                            <td>{{ $student->Class->name }}</td>
+                                            <td>{{ $student->myClass->name }}</td>
+                                            <td>{{ $student->myClassGroup->class_group_name }}</td>
                                             <td>
                                                 @foreach($student->user->getRoleNames() as $role)
                                                     <span class="badge label-danger"> {{ $role }} </span>

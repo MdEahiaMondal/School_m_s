@@ -5,7 +5,7 @@
 @push('css')
 
     <link href="{{ asset('backend/js/iCheck/skins/square/green.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
 @endpush
 
 
@@ -59,6 +59,22 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Parent <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
+                                        <div class="col-lg-10">
+                                            <select name="parnt_id" data-show-subtext="true" class="form-control m-bot15 selectpicker" data-live-search="true">
+                                                <option value="">===>Choose Parents===></option>
+                                                @foreach($parents as $parent)
+                                                    <option data-tokens="frosting" value="{{ $parent->id }}">{{ $parent->user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('parent_id')
+                                            <span class="text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
 
                                     <div class="form-group">
@@ -108,36 +124,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="inputSuccess" class="col-lg-2 col-sm-2 control-label">Parent <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
-                                        <div class="col-lg-10">
-                                            <select name="parnt_id" class="form-control m-bot15">
-                                                <option value="">===>Choose Parents===></option>
-                                                @foreach($parents as $parent)
-                                                    <option value="{{ $parent->id }}">{{ $parent->user->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('parent_id')
-                                            <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="parent_phone" class="col-lg-2 col-sm-2 control-label">Parent Phone <sup class="text-danger" style="font-size: 9px"> <i class="fa fa-asterisk"></i> </sup></label>
-                                        <div class="col-lg-10">
-                                            <input type="text" value="{{ old('parent_phone') }}" name="parent_phone" class="form-control" id="parent_phone" placeholder="Parent Phone">
-                                            @error('parent_phone')
-                                            <span class="text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
 
 
                                     <div class="form-group">
@@ -228,6 +214,9 @@
 
 
 @push('script')
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
     <script src="{{ asset('backend/js/iCheck/jquery.icheck.js') }}"></script>
 
