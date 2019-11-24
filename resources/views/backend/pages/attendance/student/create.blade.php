@@ -135,6 +135,7 @@
     </script>
 
     <script>
+
         $("#classGroup").change(function () {
             var class_Group_id = $(this).val();
             var Class_id = $("#class").val();
@@ -143,7 +144,6 @@
                      $("#editable-sample").html(feedBackResult)
                 })
             }
-
         })
 
     </script>

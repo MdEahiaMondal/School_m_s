@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static whereHas(string $string, \Closure $param)
+ */
 class Student extends Model
 {
     protected $fillable = [
@@ -31,7 +34,8 @@ class Student extends Model
         return $this->belongsTo(Parnt::class,'parnt_id');
     }
 
-
-
+    public function attendance(){
+        return $this->hasMany(Attendance::class, 'student_id', 'id');
+    }
 
 }

@@ -12,18 +12,22 @@
 <tbody>
 
 @if(count($class_Group_wise_students) > 0)
-    @foreach($class_Group_wise_students as $key => $class_Group_wise_student)
+    @foreach($class_Group_wise_students as $key =>$student)
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td>{{ $class_Group_wise_student->user->name }}</td>
-            <td>{{ $class_Group_wise_student->roll_number }}</td>
-            <td>{{ $class_Group_wise_student->phone }}</td>
+            <td>{{ $student->user->name }}</td>
+            <td>{{ $student->roll_number }}</td>
+            <td>{{ $student->phone }}</td>
             <td id="result">
-                @foreach($attendances as $att)
-                @endforeach
-                <a href="#0" data-class_id="{{ $class_Group_wise_student->myClass->id }}" data-student_id="{{ $class_Group_wise_student->id }}" id="StusentStatus" class="badge label-success">Present</a>
+                <input type="checkbox"
+
+                       @foreach($student->attendance as $Attendance)
+                           {{ $Attendance->attendance_status == 1 ? 'checked' : '' }}
+                      @endforeach
+                       id="StusentStatus" data-class_id="{{ $student->myClass->id }}" data-student_id="{{ $student->id }}">
             </td>
         </tr>
+
     @endforeach
 
 
@@ -43,11 +47,17 @@
 
     $(document).on('click', '#StusentStatus', function () {
 
+        /*if(document.getElementById('StusentStatus').checked) { // it will work
+            alert('yes')
+        } else {
+            alert('no')
+        }*/
+
         var student_id = $(this).data('student_id');
         var class_id = $(this).data('class_id');
 
         $.get("{{ route('present.status.student') }}", {student_id: student_id, class_id: class_id } , function (feedBackResult) {
-            alert(feedBackResult)
+             toastr.success(feedBackResult);
         })
 
 

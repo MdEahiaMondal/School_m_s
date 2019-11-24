@@ -7,6 +7,7 @@ use App\Attendance;
 use App\ClassGroup;
 use App\Student;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -149,17 +150,18 @@ class AttendanceController extends Controller
     public function GroupWiseStudent(Request $request)
     {
 
-       $class_Group_wise_students= Student::where(['all_class_id' => $request->Class_id, 'class_group_id'=>$request->class_Group_id])->get();
+       $class_Group_wise_students= Student::with(['attendance' => function($query){
+           $query->where('attendance_date',date('Y-m-d'));
+       }])->where(['all_class_id' => $request->Class_id, 'class_group_id'=>$request->class_Group_id])->get();
 
-        $attendances = Attendance::where(['class_id' =>$request->Class_id ,'attendance_date' => today()])->get();
+        //->where(['all_class_id' => $request->Class_id, 'class_group_id'=>$request->class_Group_id])->get()
 
-       return view('backend.pages.attendance.student.groupStudent', compact('class_Group_wise_students','attendances'));
+       return view('backend.pages.attendance.student.groupStudent', compact('class_Group_wise_students'));
     }
 
 
     public function StudentPresent(Request $request)
     {
-
 
         $check = Attendance::where(['class_id' =>$request->class_id ,'student_id' => $request->student_id, 'attendance_date' => today()])->first();
 
@@ -171,18 +173,20 @@ class AttendanceController extends Controller
             {
                 $check->attendance_status = 0;
                 $check->save();
+                return response()->json('Absent successfully Done !');
 
             }else if($check->attendance_status == 0){
                 $check->attendance_status = 1;
                 $check->save();
+                return response()->json('Present successfully Done !');
             }
 
         }else{
             $request['attendance_status'] = 1;
             Attendance::create($request->all());
+            return response()->json('Present successfully Done !');
         }
 
-        return response()->json(['success'=>'present done']);
     }
 
 

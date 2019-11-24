@@ -25,6 +25,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+{{--    toastr message--}}
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
     @stack('css')
 
 </head>
@@ -61,6 +64,10 @@
 <!--script for this page-->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+{{--toastr message--}}
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
 
 
 @stack('script')
