@@ -19,12 +19,12 @@
             <td>{{ $student->roll_number }}</td>
             <td>{{ $student->phone }}</td>
             <td id="result">
-                <input type="checkbox"
+                <input onclick="takeAttendance(this)" type="checkbox"
 
                        @foreach($student->attendance as $Attendance)
                            {{ $Attendance->attendance_status == 1 ? 'checked' : '' }}
                       @endforeach
-                       id="StusentStatus" data-class_id="{{ $student->myClass->id }}" data-student_id="{{ $student->id }}">
+                       class_id="{{ $student->myClass->id }}" student_id="{{ $student->id }}">
             </td>
         </tr>
 
@@ -45,25 +45,14 @@
 
 <script>
 
-    $(document).on('click', '#StusentStatus', function () {
+    function takeAttendance(e){
 
-        /*if(document.getElementById('StusentStatus').checked) { // it will work
-            alert('yes')
-        } else {
-            alert('no')
-        }*/
+        var student_id = $(e).attr('student_id');
+        var class_id = $(e).attr('class_id');
 
-        var student_id = $(this).data('student_id');
-        var class_id = $(this).data('class_id');
-
-        $.get("{{ route('present.status.student') }}", {student_id: student_id, class_id: class_id } , function (feedBackResult) {
+         $.get("{{ route('present.status.student') }}", {student_id: student_id, class_id: class_id } , function (feedBackResult) {
              toastr.success(feedBackResult);
         })
-
-
-
-
-
-    });
+    }
 
 </script>

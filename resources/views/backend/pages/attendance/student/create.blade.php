@@ -141,6 +141,7 @@
             var Class_id = $("#class").val();
             if(class_Group_id){
                 $.get("{{ route('get.group.wise.student') }}", {class_Group_id:class_Group_id, Class_id:Class_id }, function (feedBackResult) {
+                     $("#editable-sample").html('');
                      $("#editable-sample").html(feedBackResult)
                 })
             }

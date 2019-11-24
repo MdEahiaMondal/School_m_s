@@ -184,7 +184,7 @@ class AttendanceController extends Controller
         }else{
             $request['attendance_status'] = 1;
             Attendance::create($request->all());
-            return response()->json('Present successfully Done !');
+            return response()->json('Present successfully Done 1 !');
         }
 
     }
