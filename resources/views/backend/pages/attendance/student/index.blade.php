@@ -43,7 +43,7 @@
                                     </button>
                                     <ul class="dropdown-menu pull-right">
                                         <li><a href="#">Print</a></li>
-                                        <li><a href="#">Save as PDF</a></li>
+                                        <li><a href="{{ route('attendance.pdf') }}">Save as PDF</a></li>
                                         <li><a href="#">Export to Excel</a></li>
                                     </ul>
                                 </div>

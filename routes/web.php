@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 //Attendance
+    Route::get('attendance-pdf', 'Backend\AttendanceController@makeAttendancePdf')->name('attendance.pdf');
     Route::get('present-student', 'Backend\AttendanceController@StudentPresent')->name('present.status.student');
     Route::get('Group-wise-student', 'Backend\AttendanceController@GroupWiseStudent')->name('get.group.wise.student');
     Route::resource('attendances', 'Backend\AttendanceController');

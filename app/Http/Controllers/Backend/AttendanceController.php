@@ -6,6 +6,7 @@ use App\AllClass;
 use App\Attendance;
 use App\ClassGroup;
 use App\Student;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -39,6 +40,22 @@ class AttendanceController extends Controller
 
         return view('backend.pages.attendance.student.index', compact('attendances'));
     }
+
+
+    public function makeAttendancePdf()
+    {
+
+        if (auth()->user()->hasRole('admin'))
+        {
+            $attendances = Attendance::latest()->get();
+        }else{
+            $attendances = Attendance::where('teacher_id', auth()->user()->id)->latest()->get();
+        }
+
+        $pdf = PDF::loadView('backend.pages.attendance.student.makePdf', compact('attendances'));
+        return $pdf->download('invoice.pdf');
+    }
+
 
 
     public function create()
@@ -166,24 +183,31 @@ class AttendanceController extends Controller
         $check = Attendance::where(['class_id' =>$request->class_id ,'student_id' => $request->student_id, 'attendance_date' => today()])->first();
 
         $request['attendance_date'] = date('Y-m-d');
+
         $request['teacher_id'] = auth()->user()->id;
 
         if ($check){
+
             if ($check->attendance_status == 1)
             {
                 $check->attendance_status = 0;
                 $check->save();
+
                 return response()->json('Absent successfully Done !');
 
             }else if($check->attendance_status == 0){
                 $check->attendance_status = 1;
                 $check->save();
+
                 return response()->json('Present successfully Done !');
             }
 
+
         }else{
             $request['attendance_status'] = 1;
+
             Attendance::create($request->all());
+
             return response()->json('Present successfully Done 1 !');
         }
 
