@@ -40,7 +40,7 @@
                 <th class="text-center">Date</th>
                 <th class="text-center">Teacher</th>
                 <th class="text-center">Attendance Type</th>
-                <th class="text-center">Action</th>
+
             </tr>
             </thead>
             <tbody>
@@ -59,23 +59,6 @@
                             <span class="badge label-success">Present</span>
                         @else
                             <span class="badge label-danger">Absent</span>
-                        @endif
-
-                    </td>
-                    <td>
-
-
-                        @if(auth()->user()->can('attendance edit'))
-                            <a href="{{ route('attendances.edit', $attendance->id) }}" class="btn btn-primary">Edit</a>
-                        @endif
-
-                        @if(auth()->user()->can('attendance delete'))
-                            <button type="button" class="btn btn-danger" onclick="deleteAttendances({{ $attendance->id }})">Delete</button>
-
-                            <form action="{{ route('attendances.destroy', $attendance->id) }}" id="delete-form-{{ $attendance->id }}" method="post" style="display: none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
                         @endif
 
                     </td>
