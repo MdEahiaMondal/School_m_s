@@ -12,7 +12,6 @@
     <link href="{{ asset('backend/js/jquery-ui/jquery-ui-1.10.1.custom.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/bootstrap-reset.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/style-responsive.css') }}" rel="stylesheet"/>
